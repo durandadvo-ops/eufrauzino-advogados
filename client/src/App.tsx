@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import Team from "./pages/Team";
 import Articles from "./pages/Articles";
 import About from "./pages/About";
+import Events from "./pages/Events";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/equipe"} component={Team} />
       <Route path={"/artigos"} component={Articles} />
       <Route path={"/sobre"} component={About} />
+      <Route path={"/eventos"} component={Events} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

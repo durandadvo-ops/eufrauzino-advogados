@@ -18,7 +18,7 @@ export default function Team() {
         "MBA em Direito Fiscal e Tributário (SEFAZ e ESTÁCIO)",
         "Ex-Auditor Fiscal do Estado da Paraíba",
         "Professor de Direito Tributário da UEPB (1994-2002)",
-        "Assessor jurídico da Associação Comercial de Campina Grande (ACCG)",
+        "Diretor Jurídico da Associação Comercial de Campina Grande (ACCG)",
         "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2020-2021)"
       ]
     },
@@ -58,7 +58,8 @@ export default function Team() {
       education: [
         "Formado pela Universidade Estadual da Paraíba",
         "Pós-Graduado em Direito Tributário (IBET)",
-        "Pós-Graduado em Direito Previdenciário e Direito do Trabalho (FIP)"
+        "Pós-Graduado em Direito Previdenciário e Direito do Trabalho (FIP)",
+        "Pós-Graduação em Contabilidade Tributária (BBSP)"
       ]
     },
     {
@@ -68,6 +69,7 @@ export default function Team() {
       image: "/manus-storage/dinara_5c8a199c.jpeg",
       specialties: ["Direito Tributário", "Planejamento Sucessório", "Direito de Família"],
       education: [
+        "Formada em Administração pela Universidade Estadual da Paraíba",
         "Formada pela FACISA",
         "Pós-graduação em Direito Tributário (Unipe)",
         "Pós-graduanda em Planejamento Sucessório Patrimônio Família-Empresa"
@@ -158,6 +160,29 @@ export default function Team() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional Video Section */}
+      <section className="py-20 md:py-32 bg-white border-b border-border">
+        <div className="container">
+          <h2 className="text-4xl font-serif font-bold text-primary mb-12 text-center">
+            Conheça Quem Somos
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-muted aspect-video rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/GPI7UOI8iyc?si=ZpWVh5IucD5fZHAw"
+                title="Vídeo Institucional Eufrauzino Advogados"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </div>
       </section>

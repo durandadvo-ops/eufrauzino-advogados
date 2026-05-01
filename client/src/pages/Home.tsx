@@ -3,6 +3,7 @@ import { ArrowRight, FileText, Scale, Briefcase, Home as HomeIcon, Users, Mail, 
 import { useState } from "react";
 import { useLocation } from "wouter";
 import LocationMap from "@/components/LocationMap";
+import InstagramFeed from "@/components/InstagramFeed";
 
 export default function Home() {
   const [, navigate] = useLocation();
@@ -57,6 +58,7 @@ export default function Home() {
           <nav className="hidden md:flex gap-8">
             <a href="#services" className="text-foreground hover:text-primary transition-colors">Serviços</a>
             <button onClick={() => navigate("/equipe")} className="text-foreground hover:text-primary transition-colors cursor-pointer">Equipe</button>
+            <button onClick={() => navigate("/eventos")} className="text-foreground hover:text-primary transition-colors cursor-pointer">Eventos</button>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contato</a>
           </nav>
 
@@ -295,6 +297,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Instagram Feed Section */}
+      <InstagramFeed />
 
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-12">
