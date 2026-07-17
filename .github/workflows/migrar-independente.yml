@@ -1,0 +1,22 @@
+name: Migrar para versao independente
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/migrar-independente.yml
+      - .github/workflows/.migrar-trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch
