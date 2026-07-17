@@ -1,0 +1,40 @@
+name: Importar ativos para o repositorio
+
+on:
+  push:
+    branches: [substituicao-independente]
+    paths: [.github/workflows/importar-ativos.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v6
+        with:
+          ref: substituicao-independente
+
+      - name: Copiar logo e fotografias para o repositorio
+        shell: bash
+        run: |
+          set -e
+          mkdir -p client/public/assets
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/logo_bcc5d4e0.webp" -o client/public/assets/logo.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/jurandi_c804fd7e.jpeg" -o client/public/assets/jurandi.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/thiago_d4952930.jpeg" -o client/public/assets/thiago.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/victoria_2ff9d290.jpeg" -o client/public/assets/victoria.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dalton_c1f9702c.jpeg" -o client/public/assets/dalton.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dinara_5c8a199c.jpeg" -o client/public/assets/dinara.webp
+
+      - name: Registrar ativos no GitHub
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add client/public/assets
+          git commit -m "assets: incorporar logo e fotografias ao repositorio" || exit 0
+          git push origin substituicao-independente
