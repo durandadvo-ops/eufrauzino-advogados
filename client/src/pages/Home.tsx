@@ -12,7 +12,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const mensagem = `Olá, sou ${formData.name}. Meu e-mail é ${formData.email}. ${formData.message}`;
-    window.open(`https://wa.me/5583999699995?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/5583986366658?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
   };
 
   const services = [
@@ -205,7 +205,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Telefone</h3>
-                    <p className="text-muted-foreground">(83) 986366658</p>
+                    <p className="text-muted-foreground">+55 83 98636-6658</p>
                   </div>
                 </div>
 
@@ -321,7 +321,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contato</h4>
               <ul className="space-y-2 text-primary-foreground/80 text-sm">
-                <li>(83) 986366658</li>
+                <li>+55 83 98636-6658</li>
                 <li>eufrauzinoadvogados@outlook.com</li>
                 <li>Campina Grande, PB</li>
               </ul>
