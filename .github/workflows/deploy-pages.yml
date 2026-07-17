@@ -19,29 +19,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar repositorio
-        uses: actions/checkout@v4
-
-      - name: Configurar pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.4.1
+        uses: actions/checkout@v6
 
       - name: Configurar Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
-          cache: pnpm
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Configurar pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Conferir ambiente
+        run: |
+          node --version
+          pnpm --version
 
       - name: Preservar imagens do site atual
         shell: bash
         run: |
           mkdir -p client/public/manus-storage
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/logo_bcc5d4e0.webp" -o client/public/manus-storage/logo_bcc5d4e0.webp
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/jurandi_c804fd7e.jpeg" -o client/public/manus-storage/jurandi_c804fd7e.jpeg
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/thiago_d4952930.jpeg" -o client/public/manus-storage/thiago_d4952930.jpeg
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/victoria_2ff9d290.jpeg" -o client/public/manus-storage/victoria_2ff9d290.jpeg
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dalton_c1f9702c.jpeg" -o client/public/manus-storage/dalton_c1f9702c.jpeg
-          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dinara_5c8a199c.jpeg" -o client/public/manus-storage/dinara_5c8a199c.jpeg
+          baixar() {
+            origem="$1"
+            destino="$2"
+            if ! curl --fail --location --silent --show-error --retry 2 "$origem" -o "$destino"; then
+              echo "Aviso: nao foi possivel baixar $origem"
+              rm -f "$destino"
+            fi
+          }
+          baixar "https://eufrauzinoadvogados.com/manus-storage/logo_bcc5d4e0.webp" "client/public/manus-storage/logo_bcc5d4e0.webp"
+          baixar "https://eufrauzinoadvogados.com/manus-storage/jurandi_c804fd7e.jpeg" "client/public/manus-storage/jurandi_c804fd7e.jpeg"
+          baixar "https://eufrauzinoadvogados.com/manus-storage/thiago_d4952930.jpeg" "client/public/manus-storage/thiago_d4952930.jpeg"
+          baixar "https://eufrauzinoadvogados.com/manus-storage/victoria_2ff9d290.jpeg" "client/public/manus-storage/victoria_2ff9d290.jpeg"
+          baixar "https://eufrauzinoadvogados.com/manus-storage/dalton_c1f9702c.jpeg" "client/public/manus-storage/dalton_c1f9702c.jpeg"
+          baixar "https://eufrauzinoadvogados.com/manus-storage/dinara_5c8a199c.jpeg" "client/public/manus-storage/dinara_5c8a199c.jpeg"
 
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
@@ -49,9 +60,13 @@ jobs:
       - name: Gerar site
         run: pnpm build
 
-      - name: Preparar rotas da aplicacao
+      - name: Preparar GitHub Pages
         shell: bash
         run: |
+          sed -i 's#="/assets/#="/eufrauzino-advogados/assets/#g' dist/public/index.html
+          if [ -d dist/public/assets ]; then
+            grep -RIl '/manus-storage/' dist/public/assets | xargs -r sed -i 's#/manus-storage/#/eufrauzino-advogados/manus-storage/#g'
+          fi
           cp dist/public/index.html dist/public/404.html
           touch dist/public/.nojekyll
 
