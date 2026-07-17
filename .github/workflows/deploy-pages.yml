@@ -33,8 +33,8 @@ jobs:
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
 
-      - name: Gerar site
-        run: VITE_BASE_PATH=/eufrauzino-advogados/ pnpm build
+      - name: Gerar site para dominio proprio
+        run: VITE_BASE_PATH=/ pnpm build
 
       - name: Preparar GitHub Pages
         shell: bash
