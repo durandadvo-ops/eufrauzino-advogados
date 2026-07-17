@@ -19,14 +19,7 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          package-manager-cache: false
-
-      - uses: pnpm/action-setup@v6
-
-      - name: Aplicar migracao
+      - name: Aplicar alteracoes independentes
         shell: bash
         run: |
           set -euo pipefail
@@ -40,6 +33,7 @@ jobs:
 
           python3 <<'PY'
           from pathlib import Path
+
           replacements = {
               '/manus-storage/logo_bcc5d4e0.webp': '/assets/logo.webp',
               '/manus-storage/jurandi_c804fd7e.jpeg': '/assets/jurandi.webp',
@@ -49,22 +43,23 @@ jobs:
               '/manus-storage/dinara_5c8a199c.jpeg': '/assets/dinara.webp',
               'https://eufrauzinoadvogados.manus.space': 'https://eufrauzinoadvogados.com',
           }
-          for root in ('client/src', 'client/index.html', 'client/public'):
-              p = Path(root)
-              files = [p] if p.is_file() else [x for x in p.rglob('*') if x.is_file() and x.suffix in {'.tsx','.ts','.html','.xml','.txt','.json'}]
-              for f in files:
+
+          roots = [Path('client/src'), Path('client/index.html'), Path('client/public')]
+          for root in roots:
+              files = [root] if root.is_file() else [p for p in root.rglob('*') if p.is_file() and p.suffix in {'.tsx', '.ts', '.html', '.xml', '.txt', '.json'}]
+              for file in files:
                   try:
-                      text = f.read_text()
+                      text = file.read_text(encoding='utf-8')
                   except UnicodeDecodeError:
                       continue
                   new = text
                   for old, value in replacements.items():
                       new = new.replace(old, value)
                   if new != text:
-                      f.write_text(new)
+                      file.write_text(new, encoding='utf-8')
 
           home = Path('client/src/pages/Home.tsx')
-          text = home.read_text()
+          text = home.read_text(encoding='utf-8')
           old = '''  const handleSubmit = (e: React.FormEvent) => {
               e.preventDefault();
               console.log("Formulário enviado:", formData);
@@ -76,7 +71,7 @@ jobs:
               window.open(`https://wa.me/5583999699995?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
             };'''
           if old in text:
-              home.write_text(text.replace(old, new))
+              home.write_text(text.replace(old, new), encoding='utf-8')
           PY
 
           cat > vite.config.ts <<'EOF'
@@ -122,65 +117,16 @@ jobs:
           }
           EOF
 
-          node <<'NODE'
-          const fs = require('fs');
-          const p = JSON.parse(fs.readFileSync('package.json','utf8'));
-          for (const name of ['@builder.io/vite-plugin-jsx-loc','@types/google.maps','vite-plugin-manus-runtime']) delete p.devDependencies[name];
-          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
-          NODE
-
-          cat > .github/workflows/deploy-pages.yml <<'EOF'
-          name: Publicar site
-          on:
-            push:
-              branches: [main]
-            workflow_dispatch:
-          permissions:
-            contents: read
-            pages: write
-            id-token: write
-          concurrency:
-            group: pages
-            cancel-in-progress: true
-          jobs:
-            build:
-              runs-on: ubuntu-latest
-              steps:
-                - uses: actions/checkout@v6
-                - uses: actions/setup-node@v6
-                  with:
-                    node-version: 24
-                    package-manager-cache: false
-                - uses: pnpm/action-setup@v6
-                - run: pnpm install --frozen-lockfile
-                - run: VITE_BASE_PATH=/eufrauzino-advogados/ pnpm build
-                - run: cp dist/public/index.html dist/public/404.html && touch dist/public/.nojekyll
-                - uses: actions/configure-pages@v5
-                - uses: actions/upload-pages-artifact@v3
-                  with:
-                    path: dist/public
-            deploy:
-              environment:
-                name: github-pages
-                url: ${{ steps.deployment.outputs.page_url }}
-              runs-on: ubuntu-latest
-              needs: build
-              steps:
-                - id: deployment
-                  uses: actions/deploy-pages@v4
-          EOF
-
-          pnpm install --no-frozen-lockfile
-          VITE_BASE_PATH=/eufrauzino-advogados/ pnpm build
-
-          rm -f .github/workflows/migrar-independente.yml
-
       - name: Gravar alteracoes
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "ChatGPT Migration"
           git config user.email "actions@github.com"
-          git add -A
+          git add client/src client/index.html client/public vite.config.ts
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteracao pendente"
+            exit 0
+          fi
           git commit -m "feat: migrar site para infraestrutura independente"
           git push origin main
