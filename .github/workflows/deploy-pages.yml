@@ -1,0 +1,75 @@
+name: Publicar site de homologacao
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Preservar imagens do site atual
+        shell: bash
+        run: |
+          mkdir -p client/public/manus-storage
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/logo_bcc5d4e0.webp" -o client/public/manus-storage/logo_bcc5d4e0.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/jurandi_c804fd7e.jpeg" -o client/public/manus-storage/jurandi_c804fd7e.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/thiago_d4952930.jpeg" -o client/public/manus-storage/thiago_d4952930.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/victoria_2ff9d290.jpeg" -o client/public/manus-storage/victoria_2ff9d290.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dalton_c1f9702c.jpeg" -o client/public/manus-storage/dalton_c1f9702c.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dinara_5c8a199c.jpeg" -o client/public/manus-storage/dinara_5c8a199c.jpeg
+
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+
+      - name: Gerar site
+        run: pnpm build
+
+      - name: Preparar rotas da aplicacao
+        shell: bash
+        run: |
+          cp dist/public/index.html dist/public/404.html
+          touch dist/public/.nojekyll
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar artefato
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
