@@ -10,7 +10,7 @@ export default function Team() {
       name: "Jurandi Eufrauzino",
       oab: "OAB/PB 26.034",
       title: "Advogado | Ex-Auditor Fiscal",
-      image: "/manus-storage/jurandi_c804fd7e.jpeg",
+      image: "/assets/jurandi.webp",
       specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
       education: [
         "Formado pela Universidade Federal da Paraíba",
@@ -26,7 +26,7 @@ export default function Team() {
       name: "Thiago Durand",
       oab: "OAB/PB 21.175",
       title: "Advogado",
-      image: "/manus-storage/thiago_d4952930.jpeg",
+      image: "/assets/thiago.webp",
       specialties: ["Direito Penal", "Direito Empresarial", "Direito Tributário"],
       education: [
         "Formado pela Universidade Estadual da Paraíba",
@@ -39,7 +39,7 @@ export default function Team() {
       name: "Victória Eufrauzino",
       oab: "OAB/PB 25.066",
       title: "Advogada",
-      image: "/manus-storage/victoria_2ff9d290.jpeg",
+      image: "/assets/victoria.webp",
       specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
       education: [
         "Formada pela Universidade Estadual da Paraíba",
@@ -53,7 +53,7 @@ export default function Team() {
       name: "Dalton Eufrauzino",
       oab: "OAB/PB 23.332",
       title: "Advogado",
-      image: "/manus-storage/dalton_c1f9702c.jpeg",
+      image: "/assets/dalton.webp",
       specialties: ["Direito Tributário", "Direito Previdenciário", "Direito do Trabalho"],
       education: [
         "Formado pela Universidade Estadual da Paraíba",
@@ -66,7 +66,7 @@ export default function Team() {
       name: "Dinara Eufrauzino",
       oab: "OAB/PB 20.651",
       title: "Advogada",
-      image: "/manus-storage/dinara_5c8a199c.jpeg",
+      image: "/assets/dinara.webp",
       specialties: ["Direito Tributário", "Planejamento Sucessório", "Direito de Família"],
       education: [
         "Formada em Administração pela Universidade Estadual da Paraíba",
@@ -83,7 +83,7 @@ export default function Team() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="container flex items-center justify-between h-20">
           <button onClick={() => navigate("/")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src="/manus-storage/logo_bcc5d4e0.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
+            <img src="/assets/logo.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
             <div>
               <h1 className="text-lg font-serif font-bold text-primary">Eufrauzino</h1>
               <p className="text-xs text-muted-foreground">Advogados</p>

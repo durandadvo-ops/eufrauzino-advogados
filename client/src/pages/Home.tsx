@@ -11,8 +11,8 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulário enviado:", formData);
-    setFormData({ name: "", email: "", message: "" });
+    const mensagem = `Olá, sou ${formData.name}. Meu e-mail é ${formData.email}. ${formData.message}`;
+    window.open(`https://wa.me/5583999699995?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
   };
 
   const services = [
@@ -48,7 +48,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="container flex items-center justify-between h-20">
           <button onClick={() => navigate("/")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src="/manus-storage/logo_bcc5d4e0.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
+            <img src="/assets/logo.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
             <div>
               <h1 className="text-lg font-serif font-bold text-primary">Eufrauzino</h1>
               <p className="text-xs text-muted-foreground">Advogados</p>
@@ -82,7 +82,7 @@ export default function Home() {
         <div className="container relative z-10 flex flex-col items-center justify-center min-h-96">
           <div className="text-center">
             <div className="mb-8 flex justify-center">
-              <img src="/manus-storage/logo_bcc5d4e0.webp" alt="Eufrauzino Advogados" className="w-24 h-24 rounded-full object-cover shadow-lg" />
+              <img src="/assets/logo.webp" alt="Eufrauzino Advogados" className="w-24 h-24 rounded-full object-cover shadow-lg" />
             </div>
             
             <h1 className="text-6xl md:text-7xl font-serif font-bold text-primary mb-2 leading-tight">
@@ -160,11 +160,11 @@ export default function Home() {
 
           <div className="grid md:grid-cols-5 gap-6">
             {[
-              { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/manus-storage/jurandi_c804fd7e.jpeg" },
-              { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/manus-storage/thiago_d4952930.jpeg" },
-              { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/manus-storage/victoria_2ff9d290.jpeg" },
-              { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/manus-storage/dalton_c1f9702c.jpeg" },
-              { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/manus-storage/dinara_5c8a199c.jpeg" }
+              { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp" },
+              { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/assets/thiago.webp" },
+              { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp" },
+              { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/assets/dalton.webp" },
+              { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp" }
             ].map((member, idx) => (
               <button 
                 key={idx} 

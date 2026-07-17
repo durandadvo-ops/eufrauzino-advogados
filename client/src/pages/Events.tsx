@@ -22,7 +22,7 @@ export default function Events() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="container flex items-center justify-between h-20">
           <button onClick={() => navigate("/")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src="/manus-storage/logo_bcc5d4e0.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
+            <img src="/assets/logo.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
             <div>
               <h1 className="text-lg font-serif font-bold text-primary">Eufrauzino</h1>
               <p className="text-xs text-muted-foreground">Advogados</p>

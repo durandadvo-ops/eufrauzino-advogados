@@ -1,45 +1,15 @@
-import { MapView } from './Map';
+import { ExternalLink, MapPin } from "lucide-react";
 
 export default function LocationMap() {
-  const handleMapReady = (map: google.maps.Map) => {
-    // Coordenadas do escritório em Campina Grande
-    const location = { lat: -7.2305, lng: -35.8811 };
-
-    // Adicionar marcador
-    new window.google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: location,
-      title: 'Eufrauzino Advogados',
-    });
-
-    // Adicionar info window
-    const infoWindow = new google.maps.InfoWindow({
-      content: `
-        <div style="padding: 12px; font-family: 'Lato', sans-serif;">
-          <h3 style="margin: 0 0 8px 0; font-family: 'Cormorant Garamond', serif; color: #6B1E2C; font-size: 18px; font-weight: bold;">
-            Eufrauzino Advogados
-          </h3>
-          <p style="margin: 0; color: #4A4A4A; font-size: 14px;">
-            Rua Getúlio Cavalcante, 136<br />
-            Liberdade, Campina Grande, PB
-          </p>
-          <p style="margin: 8px 0 0 0; color: #6B1E2C; font-size: 14px; font-weight: bold;">
-            (83) 986366658
-          </p>
-        </div>
-      `,
-      maxWidth: 300,
-    });
-
-    infoWindow.open(map);
-  };
-
+  const url = "https://www.google.com/maps/search/?api=1&query=Rua+Getulio+Cavalcante+136+Liberdade+Campina+Grande+PB";
   return (
-    <MapView
-      initialCenter={{ lat: -7.2305, lng: -35.8811 }}
-      initialZoom={15}
-      onMapReady={handleMapReady}
-      className="rounded-lg overflow-hidden"
-    />
+    <div className="rounded-lg border border-border bg-muted/30 p-8 text-center min-h-64 flex flex-col items-center justify-center">
+      <MapPin className="h-10 w-10 text-primary mb-4" />
+      <h4 className="font-serif text-xl font-bold text-primary">Eufrauzino Advogados</h4>
+      <p className="mt-2 text-muted-foreground">Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</p>
+      <a href={url} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+        Abrir no Google Maps <ExternalLink className="h-4 w-4" />
+      </a>
+    </div>
   );
 }
