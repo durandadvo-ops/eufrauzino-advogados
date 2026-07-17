@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - .github/workflows/migrar-independente.yml
-      - .github/workflows/.migrar-trigger
   workflow_dispatch:
 
 permissions:
@@ -15,8 +14,172 @@ jobs:
   migrar:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixar repositorio
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           ref: main
-          fetch
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - uses: pnpm/action-setup@v6
+
+      - name: Aplicar migracao
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p client/public/assets
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/logo_bcc5d4e0.webp" -o client/public/assets/logo-eufrauzino.webp
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/jurandi_c804fd7e.jpeg" -o client/public/assets/jurandi.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/thiago_d4952930.jpeg" -o client/public/assets/thiago.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/victoria_2ff9d290.jpeg" -o client/public/assets/victoria.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dalton_c1f9702c.jpeg" -o client/public/assets/dalton.jpeg
+          curl -fL --retry 3 "https://eufrauzinoadvogados.com/manus-storage/dinara_5c8a199c.jpeg" -o client/public/assets/dinara.jpeg
+
+          python <<'PY'
+          from pathlib import Path
+          replacements = {
+              '/manus-storage/logo_bcc5d4e0.webp': '/assets/logo-eufrauzino.webp',
+              '/manus-storage/jurandi_c804fd7e.jpeg': '/assets/jurandi.jpeg',
+              '/manus-storage/thiago_d4952930.jpeg': '/assets/thiago.jpeg',
+              '/manus-storage/victoria_2ff9d290.jpeg': '/assets/victoria.jpeg',
+              '/manus-storage/dalton_c1f9702c.jpeg': '/assets/dalton.jpeg',
+              '/manus-storage/dinara_5c8a199c.jpeg': '/assets/dinara.jpeg',
+              'https://eufrauzinoadvogados.manus.space': 'https://eufrauzinoadvogados.com',
+          }
+          for root in ('client/src', 'client/index.html', 'client/public'):
+              p = Path(root)
+              files = [p] if p.is_file() else [x for x in p.rglob('*') if x.is_file() and x.suffix in {'.tsx','.ts','.html','.xml','.txt','.json'}]
+              for f in files:
+                  try: text = f.read_text()
+                  except UnicodeDecodeError: continue
+                  new = text
+                  for old, value in replacements.items(): new = new.replace(old, value)
+                  if new != text: f.write_text(new)
+
+          home = Path('client/src/pages/Home.tsx')
+          text = home.read_text()
+          old = '''  const handleSubmit = (e: React.FormEvent) => {
+              e.preventDefault();
+              console.log("Formulário enviado:", formData);
+              setFormData({ name: "", email: "", message: "" });
+            };'''
+          new = '''  const handleSubmit = (e: React.FormEvent) => {
+              e.preventDefault();
+              const mensagem = `Olá, sou ${formData.name}. Meu e-mail é ${formData.email}. ${formData.message}`;
+              window.open(`https://wa.me/5583999699995?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener,noreferrer");
+            };'''
+          if old not in text:
+              raise SystemExit('Bloco do formulario nao localizado')
+          home.write_text(text.replace(old, new))
+          PY
+
+          cat > vite.config.ts <<'EOF'
+          import tailwindcss from "@tailwindcss/vite";
+          import react from "@vitejs/plugin-react";
+          import path from "node:path";
+          import { defineConfig } from "vite";
+
+          export default defineConfig({
+            base: process.env.VITE_BASE_PATH || "/",
+            plugins: [react(), tailwindcss()],
+            resolve: {
+              alias: {
+                "@": path.resolve(import.meta.dirname, "client", "src"),
+                "@shared": path.resolve(import.meta.dirname, "shared"),
+                "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+              },
+            },
+            root: path.resolve(import.meta.dirname, "client"),
+            build: {
+              outDir: path.resolve(import.meta.dirname, "dist/public"),
+              emptyOutDir: true,
+            },
+            server: { port: 3000, strictPort: false, host: true },
+          });
+          EOF
+
+          cat > client/src/components/LocationMap.tsx <<'EOF'
+          import { ExternalLink, MapPin } from "lucide-react";
+
+          export default function LocationMap() {
+            const url = "https://www.google.com/maps/search/?api=1&query=Rua+Getulio+Cavalcante+136+Liberdade+Campina+Grande+PB";
+            return (
+              <div className="rounded-lg border border-border bg-muted/30 p-8 text-center min-h-64 flex flex-col items-center justify-center">
+                <MapPin className="h-10 w-10 text-primary mb-4" />
+                <h4 className="font-serif text-xl font-bold text-primary">Eufrauzino Advogados</h4>
+                <p className="mt-2 text-muted-foreground">Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</p>
+                <a href={url} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-semibold text-primary hover:underline">
+                  Abrir no Google Maps <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            );
+          }
+          EOF
+
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('package.json','utf8'));
+          for (const name of ['@builder.io/vite-plugin-jsx-loc','@types/google.maps','vite-plugin-manus-runtime']) delete p.devDependencies[name];
+          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
+          NODE
+
+          cat > .github/workflows/deploy-pages.yml <<'EOF'
+          name: Publicar site
+          on:
+            push:
+              branches: [main]
+            workflow_dispatch:
+          permissions:
+            contents: read
+            pages: write
+            id-token: write
+          concurrency:
+            group: pages
+            cancel-in-progress: true
+          jobs:
+            build:
+              runs-on: ubuntu-latest
+              steps:
+                - uses: actions/checkout@v6
+                - uses: actions/setup-node@v6
+                  with:
+                    node-version: 24
+                    package-manager-cache: false
+                - uses: pnpm/action-setup@v6
+                - run: pnpm install --frozen-lockfile
+                - run: VITE_BASE_PATH=/eufrauzino-advogados/ pnpm build
+                - run: cp dist/public/index.html dist/public/404.html && touch dist/public/.nojekyll
+                - uses: actions/configure-pages@v5
+                - uses: actions/upload-pages-artifact@v3
+                  with:
+                    path: dist/public
+            deploy:
+              environment:
+                name: github-pages
+                url: ${{ steps.deployment.outputs.page_url }}
+              runs-on: ubuntu-latest
+              needs: build
+              steps:
+                - id: deployment
+                  uses: actions/deploy-pages@v4
+          EOF
+
+          pnpm install --no-frozen-lockfile
+          pnpm check
+          VITE_BASE_PATH=/eufrauzino-advogados/ pnpm build
+
+          rm -f .github/workflows/migrar-independente.yml
+
+      - name: Gravar alteracoes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "ChatGPT Migration"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "feat: migrar site para infraestrutura independente"
+          git push origin main
