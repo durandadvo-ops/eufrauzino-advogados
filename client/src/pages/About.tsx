@@ -15,13 +15,6 @@ const principles = [
   { title: "Valores", text: "Ética profissional, transparência, dedicação, excelência técnica, inovação, respeito, responsabilidade social e compromisso com o desenvolvimento contínuo de nossa equipe." },
 ];
 
-const reasons = [
-  { title: "Especialização Tributária", text: "Foco principal em Direito Tributário com expertise consolidada em ICMS, PIS, COFINS e contencioso tributário." },
-  { title: "Equipe Qualificada", text: "Cinco sócios com formação sólida, pós-graduações especializadas e experiência em suas áreas." },
-  { title: "Abordagem Familiar", text: "Tratamos cada cliente como parte da nossa família, com dedicação pessoal e atenção aos detalhes." },
-  { title: "Atuação Ampla", text: "Além de Tributário, atuamos em Penal, Empresarial e Sucessório para soluções completas." },
-];
-
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
@@ -95,14 +88,10 @@ export default function About() {
               <p>Estrutura multidisciplinar, experiência tributária e atendimento próximo para a compreensão integral das necessidades de cada cliente.</p>
             </div>
 
-            <div className="practice-list">
-              {reasons.map((reason, index) => (
-                <article className="practice-item" key={reason.title}>
-                  <span className="practice-item__number">0{index + 1}</span>
-                  <h3>{reason.title}</h3>
-                  <p>{reason.text}</p>
-                </article>
-              ))}
+            <div className="differentials-text">
+              <p>
+                O Eufrauzino Advogados tem foco principal em Direito Tributário e reúne cinco sócios com formação sólida, pós-graduações especializadas e experiência em suas áreas. A estrutura familiar favorece um atendimento próximo, dedicado e atento às particularidades de cada demanda, enquanto a atuação complementar em Direito Penal, Empresarial e Sucessório permite compreender de forma integrada as necessidades jurídicas de empresas, famílias e contribuintes.
+              </p>
             </div>
           </div>
         </section>
