@@ -1,0 +1,51 @@
+.team-profile__photo {
+  background: #e8dfd2;
+}
+
+.team-profile__photo img {
+  display: block;
+  object-position: center top;
+}
+
+.team-profile__image--reduced {
+  object-fit: contain !important;
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
+.differentials-text {
+  max-width: 920px;
+  border-top: 1px solid var(--gold);
+  padding-top: 2rem;
+}
+
+.differentials-text p {
+  margin: 0;
+  color: #5f514c;
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.location-card {
+  width: 100%;
+  max-width: 980px;
+  height: 380px;
+  min-height: 0;
+  margin-inline: auto;
+}
+
+.location-card img {
+  height: 380px;
+  min-height: 0;
+}
+
+@media (max-width: 720px) {
+  .team-profile__image--reduced {
+    transform: scale(0.94);
+  }
+
+  .location-card,
+  .location-card img {
+    height: 320px;
+  }
+}
