@@ -16,6 +16,7 @@
 
 .team-profile__photo,
 .team-preview__image {
+  overflow: hidden;
   background: #e8dfd2;
 }
 
@@ -28,17 +29,41 @@
   object-position: center top;
 }
 
-/* Enquadramentos individualizados sem criar áreas vazias nos retratos. */
-.team-profile__image--thiago,
+/* Redução moderada e enquadramento individual das fotos de Thiago e Dalton. */
 .team-preview__image--thiago {
   object-fit: cover !important;
-  object-position: center 18% !important;
+  object-position: center 14% !important;
+  transform: scale(0.88);
+  transform-origin: center center;
 }
 
-.team-profile__image--dalton,
 .team-preview__image--dalton {
   object-fit: cover !important;
-  object-position: center center !important;
+  object-position: center 18% !important;
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
+.team-profile__image--thiago {
+  object-fit: cover !important;
+  object-position: center 14% !important;
+  transform: scale(0.92);
+  transform-origin: center center;
+}
+
+.team-profile__image--dalton {
+  object-fit: cover !important;
+  object-position: center 18% !important;
+  transform: scale(0.93);
+  transform-origin: center center;
+}
+
+.team-preview__member:hover .team-preview__image--thiago {
+  transform: scale(0.91);
+}
+
+.team-preview__member:hover .team-preview__image--dalton {
+  transform: scale(0.93);
 }
 
 .differentials-text {
@@ -80,14 +105,32 @@
     max-height: 285px;
   }
 
-  .team-profile__image--thiago,
   .team-preview__image--thiago {
-    object-position: center 15% !important;
+    object-position: center 12% !important;
+    transform: scale(0.92);
   }
 
-  .team-profile__image--dalton,
   .team-preview__image--dalton {
-    object-position: center center !important;
+    object-position: center 16% !important;
+    transform: scale(0.93);
+  }
+
+  .team-profile__image--thiago {
+    object-position: center 12% !important;
+    transform: scale(0.95);
+  }
+
+  .team-profile__image--dalton {
+    object-position: center 16% !important;
+    transform: scale(0.96);
+  }
+
+  .team-preview__member:hover .team-preview__image--thiago {
+    transform: scale(0.94);
+  }
+
+  .team-preview__member:hover .team-preview__image--dalton {
+    transform: scale(0.95);
   }
 
   .location-card,
