@@ -9,8 +9,8 @@
 
 .team-profile__image--reduced {
   object-fit: contain !important;
-  transform: scale(0.9);
-  transform-origin: center center;
+  transform: scale(0.84);
+  transform-origin: center top;
 }
 
 .differentials-text {
@@ -41,7 +41,7 @@
 
 @media (max-width: 720px) {
   .team-profile__image--reduced {
-    transform: scale(0.94);
+    transform: scale(0.88);
   }
 
   .location-card,
