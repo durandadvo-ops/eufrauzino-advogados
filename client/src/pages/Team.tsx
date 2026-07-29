@@ -24,7 +24,7 @@ const team = [
     oab: "OAB/PB 21.175",
     title: "Advogado",
     image: "/assets/thiago.webp",
-    imageClass: "team-profile__image--reduced",
+    imageClass: "team-profile__image--thiago",
     specialties: ["Direito Penal", "Direito Empresarial", "Direito Tributário"],
     education: [
       "Formado pela Universidade Estadual da Paraíba",
@@ -52,7 +52,7 @@ const team = [
     oab: "OAB/PB 23.332",
     title: "Advogado",
     image: "/assets/dalton.webp",
-    imageClass: "team-profile__image--reduced",
+    imageClass: "team-profile__image--dalton",
     specialties: ["Direito Tributário", "Direito Previdenciário", "Direito do Trabalho"],
     education: [
       "Formado pela Universidade Estadual da Paraíba",
