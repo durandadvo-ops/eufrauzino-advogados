@@ -14,13 +14,11 @@
   transform: translateX(-1%);
 }
 
-.team-profile__photo,
 .team-preview__image {
   overflow: hidden;
   background: #e8dfd2;
 }
 
-.team-profile__photo img,
 .team-preview__image img {
   display: block;
   width: 100%;
@@ -29,7 +27,7 @@
   object-position: center top;
 }
 
-/* Redução acentuada das fotos de Thiago e Dalton, mantendo o centro visual. */
+/* Home — seção Profissionais: redução de aproximadamente 40% apenas para Thiago e Dalton. */
 .team-preview__image--thiago {
   object-fit: cover !important;
   object-position: center 12% !important;
@@ -44,26 +42,32 @@
   transform-origin: center center;
 }
 
-.team-profile__image--thiago {
-  object-fit: cover !important;
-  object-position: center 12% !important;
-  transform: scale(0.62);
-  transform-origin: center center;
-}
-
-.team-profile__image--dalton {
-  object-fit: cover !important;
-  object-position: center 16% !important;
-  transform: scale(0.64);
-  transform-origin: center center;
-}
-
 .team-preview__member:hover .team-preview__image--thiago {
   transform: scale(0.58);
 }
 
 .team-preview__member:hover .team-preview__image--dalton {
   transform: scale(0.6);
+}
+
+/* Página Nossa Equipe — todos os retratos com exatamente o mesmo quadro e tamanho. */
+.team-profile__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  align-self: start;
+  overflow: hidden;
+  background: #e8dfd2;
+}
+
+.team-profile__photo img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  transform: none !important;
+  transform-origin: center center !important;
 }
 
 .differentials-text {
@@ -115,22 +119,17 @@
     transform: scale(0.64);
   }
 
-  .team-profile__image--thiago {
-    object-position: center 10% !important;
-    transform: scale(0.66);
-  }
-
-  .team-profile__image--dalton {
-    object-position: center 14% !important;
-    transform: scale(0.68);
-  }
-
   .team-preview__member:hover .team-preview__image--thiago {
     transform: scale(0.62);
   }
 
   .team-preview__member:hover .team-preview__image--dalton {
     transform: scale(0.64);
+  }
+
+  .team-profile__photo {
+    width: min(100%, 520px);
+    aspect-ratio: 4 / 5;
   }
 
   .location-card,
