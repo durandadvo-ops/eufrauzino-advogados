@@ -1,177 +1,136 @@
-import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
-import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
+
+const team = [
+  {
+    name: "Jurandi Eufrauzino",
+    oab: "OAB/PB 26.034",
+    title: "Advogado | Ex-Auditor Fiscal",
+    image: "/assets/jurandi.webp",
+    specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
+    education: [
+      "Formado pela Universidade Federal da Paraíba",
+      "Pós-Graduação em Administração Tributária (ESTÁCIO)",
+      "MBA em Direito Fiscal e Tributário (SEFAZ e ESTÁCIO)",
+      "Ex-Auditor Fiscal do Estado da Paraíba",
+      "Professor de Direito Tributário da UEPB (1994-2002)",
+      "Diretor Jurídico da Associação Comercial de Campina Grande (ACCG)",
+      "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2020-2021)",
+    ],
+  },
+  {
+    name: "Thiago Durand",
+    oab: "OAB/PB 21.175",
+    title: "Advogado",
+    image: "/assets/thiago.webp",
+    specialties: ["Direito Penal", "Direito Empresarial", "Direito Tributário"],
+    education: [
+      "Formado pela Universidade Estadual da Paraíba",
+      "Pós-graduado em Direito Penal e Processo Penal (FACISA)",
+      "Pós-graduado em Direito Empresarial (EBRADI)",
+      "LLM em Direito Tributário Empresarial (BSSP)",
+    ],
+  },
+  {
+    name: "Victória Eufrauzino",
+    oab: "OAB/PB 25.066",
+    title: "Advogada",
+    image: "/assets/victoria.webp",
+    specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
+    education: [
+      "Formada pela Universidade Estadual da Paraíba",
+      "Pós-Graduada em Direito Tributário (CERS)",
+      "Pós-Graduação em Contabilidade Tributária e Prática Fiscal (FBC)",
+      "LLM em Direito Tributário Empresarial (BSSP)",
+      "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2025-2026)",
+    ],
+  },
+  {
+    name: "Dalton Eufrauzino",
+    oab: "OAB/PB 23.332",
+    title: "Advogado",
+    image: "/assets/dalton.webp",
+    specialties: ["Direito Tributário", "Direito Previdenciário", "Direito do Trabalho"],
+    education: [
+      "Formado pela Universidade Estadual da Paraíba",
+      "Pós-Graduado em Direito Tributário (IBET)",
+      "Pós-Graduado em Direito Previdenciário e Direito do Trabalho (FIP)",
+      "Pós-Graduação em Contabilidade Tributária (BBSP)",
+    ],
+  },
+  {
+    name: "Dinara Eufrauzino",
+    oab: "OAB/PB 20.651",
+    title: "Advogada",
+    image: "/assets/dinara.webp",
+    specialties: ["Direito Tributário", "Planejamento Sucessório", "Direito de Família"],
+    education: [
+      "Formada em Administração pela Universidade Estadual da Paraíba",
+      "Formada pela FACISA",
+      "Pós-graduação em Direito Tributário (Unipe)",
+      "Pós-graduanda em Planejamento Sucessório Patrimônio Família-Empresa",
+    ],
+  },
+];
 
 export default function Team() {
-  const [, navigate] = useLocation();
-
-  const team = [
-    {
-      name: "Jurandi Eufrauzino",
-      oab: "OAB/PB 26.034",
-      title: "Advogado | Ex-Auditor Fiscal",
-      image: "/assets/jurandi.webp",
-      specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
-      education: [
-        "Formado pela Universidade Federal da Paraíba",
-        "Pós-Graduação em Administração Tributária (ESTÁCIO)",
-        "MBA em Direito Fiscal e Tributário (SEFAZ e ESTÁCIO)",
-        "Ex-Auditor Fiscal do Estado da Paraíba",
-        "Professor de Direito Tributário da UEPB (1994-2002)",
-        "Diretor Jurídico da Associação Comercial de Campina Grande (ACCG)",
-        "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2020-2021)"
-      ]
-    },
-    {
-      name: "Thiago Durand",
-      oab: "OAB/PB 21.175",
-      title: "Advogado",
-      image: "/assets/thiago.webp",
-      specialties: ["Direito Penal", "Direito Empresarial", "Direito Tributário"],
-      education: [
-        "Formado pela Universidade Estadual da Paraíba",
-        "Pós-graduado em Direito Penal e Processo Penal (FACISA)",
-        "Pós-graduado em Direito Empresarial (EBRADI)",
-        "LLM em Direito Tributário Empresarial (BSSP)"
-      ]
-    },
-    {
-      name: "Victória Eufrauzino",
-      oab: "OAB/PB 25.066",
-      title: "Advogada",
-      image: "/assets/victoria.webp",
-      specialties: ["Direito Tributário", "Reauditagem", "Contra Auditoria Fiscal"],
-      education: [
-        "Formada pela Universidade Estadual da Paraíba",
-        "Pós-Graduada em Direito Tributário (CERS)",
-        "Pós-Graduação em Contabilidade Tributária e Prática Fiscal (FBC)",
-        "LLM em Direito Tributário Empresarial (BSSP)",
-        "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2025-2026)"
-      ]
-    },
-    {
-      name: "Dalton Eufrauzino",
-      oab: "OAB/PB 23.332",
-      title: "Advogado",
-      image: "/assets/dalton.webp",
-      specialties: ["Direito Tributário", "Direito Previdenciário", "Direito do Trabalho"],
-      education: [
-        "Formado pela Universidade Estadual da Paraíba",
-        "Pós-Graduado em Direito Tributário (IBET)",
-        "Pós-Graduado em Direito Previdenciário e Direito do Trabalho (FIP)",
-        "Pós-Graduação em Contabilidade Tributária (BBSP)"
-      ]
-    },
-    {
-      name: "Dinara Eufrauzino",
-      oab: "OAB/PB 20.651",
-      title: "Advogada",
-      image: "/assets/dinara.webp",
-      specialties: ["Direito Tributário", "Planejamento Sucessório", "Direito de Família"],
-      education: [
-        "Formada em Administração pela Universidade Estadual da Paraíba",
-        "Formada pela FACISA",
-        "Pós-graduação em Direito Tributário (Unipe)",
-        "Pós-graduanda em Planejamento Sucessório Patrimônio Família-Empresa"
-      ]
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
-        <div className="container flex items-center justify-between h-20">
-          <button onClick={() => navigate("/")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src="/assets/logo.webp" alt="Eufrauzino Advogados" className="w-12 h-12 rounded-full object-cover" />
-            <div>
-              <h1 className="text-lg font-serif font-bold text-primary">Eufrauzino</h1>
-              <p className="text-xs text-muted-foreground">Advogados</p>
-            </div>
-          </button>
-          
-          <nav className="hidden md:flex gap-8">
-            <a href="/#services" className="text-foreground hover:text-primary transition-colors">Serviços</a>
-            <button onClick={() => navigate("/equipe")} className="text-foreground hover:text-primary transition-colors cursor-pointer font-semibold text-primary">Equipe</button>
-            <a href="/#contact" className="text-foreground hover:text-primary transition-colors">Contato</a>
-          </nav>
+      <SiteHeader />
 
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            Consultar
-          </Button>
-        </div>
-      </header>
+      <main>
+        <section className="team-page-hero">
+          <div className="container">
+            <span className="eyebrow">Profissionais</span>
+            <h1>Nossa equipe</h1>
+            <p>
+              Cinco sócios fundadores com experiência consolidada em Direito Tributário e atuação complementar em áreas estratégicas para empresas e famílias.
+            </p>
+          </div>
+        </section>
 
-      {/* Hero */}
-      <section className="py-16 md:py-24 bg-white border-b border-border">
-        <div className="container">
-          <h1 className="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
-            Nossa Equipe
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            Cinco sócios fundadores com expertise consolidada em Direito Tributário e áreas complementares
-          </p>
-        </div>
-      </section>
-
-      {/* Team Members */}
-      <section className="py-20 md:py-32">
-        <div className="container">
-          <div className="space-y-16">
-            {team.map((member, idx) => (
-              <div key={idx} className="grid md:grid-cols-3 gap-12 items-start">
-                <div className={idx % 2 === 1 ? "md:order-3" : ""}>
-                  <div className="rounded-lg overflow-hidden shadow-lg">
-                    <img src={member.image} alt={member.name} className="w-full aspect-square object-cover" />
-                  </div>
+        <section className="section section--paper">
+          <div className="container">
+            {team.map((member, index) => (
+              <article className="team-profile" key={member.name}>
+                <div className="team-profile__photo">
+                  <img src={member.image} alt={member.name} />
                 </div>
-                
-                <div className={`md:col-span-2 ${idx % 2 === 1 ? "md:order-1 md:col-span-2" : ""}`}>
-                  <div className="mb-6">
-                    <h2 className="text-4xl font-serif font-bold text-primary mb-2">
-                      {member.name}
-                    </h2>
-                    <p className="text-lg text-accent font-semibold mb-1">{member.oab}</p>
-                    <p className="text-lg text-muted-foreground">{member.title}</p>
+
+                <div className="team-profile__content">
+                  <span className="team-profile__index">Profissional 0{index + 1}</span>
+                  <h2>{member.name}</h2>
+                  <p className="team-profile__oab">{member.oab}</p>
+                  <p className="team-profile__title">{member.title}</p>
+
+                  <div className="team-profile__specialties">
+                    {member.specialties.map((specialty) => <span key={specialty}>{specialty}</span>)}
                   </div>
 
-                  <div className="mb-8">
-                    <h3 className="font-semibold text-foreground mb-3 text-lg">Especialidades</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {member.specialties.map((spec, specIdx) => (
-                        <span key={specIdx} className="px-4 py-2 bg-primary/10 text-primary text-sm rounded-full font-medium">
-                          {spec}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mb-8">
-                    <h3 className="font-semibold text-foreground mb-4 text-lg">Formação Acadêmica</h3>
-                    <ul className="space-y-3">
-                      {member.education.map((edu, eduIdx) => (
-                        <li key={eduIdx} className="flex gap-3 text-foreground">
-                          <span className="text-accent flex-shrink-0 mt-1 font-bold">✓</span>
-                          <span>{edu}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul className="team-profile__education">
+                    {member.education.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Institutional Video Section */}
-      <section className="py-20 md:py-32 bg-white border-b border-border">
-        <div className="container">
-          <h2 className="text-4xl font-serif font-bold text-primary mb-12 text-center">
-            Conheça Quem Somos
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="relative bg-muted aspect-video rounded-lg overflow-hidden shadow-lg">
+        <section className="section section--ivory">
+          <div className="container section-heading">
+            <div>
+              <span className="eyebrow">Institucional</span>
+              <h2>Conheça quem somos</h2>
+              <div className="section-rule" />
+            </div>
+            <p>
+              O Eufrauzino Advogados é um escritório familiar fundado em 2017, especializado em Direito Tributário com atuação complementar em Direito Penal, Empresarial e Sucessório. Nossos cinco sócios fundadores trabalham em conjunto para oferecer soluções jurídicas de excelência.
+            </p>
+          </div>
+
+          <div className="container">
+            <div className="aspect-video overflow-hidden border border-border bg-black">
               <iframe
                 width="100%"
                 height="100%"
@@ -180,100 +139,31 @@ export default function Team() {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="w-full h-full"
+                className="h-full w-full"
               />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl font-serif font-bold text-primary mb-6">
-              Sobre o Escritório
-            </h2>
-            <p className="text-lg text-foreground mb-6 leading-relaxed">
-              O Eufrauzino Advogados é um escritório familiar fundado em 2017, especializado em Direito Tributário com atuação complementar em Direito Penal, Empresarial e Sucessório. Nossos cinco sócios fundadores trabalham em conjunto para oferecer soluções jurídicas de excelência.
-            </p>
-            <p className="text-lg text-foreground mb-6 leading-relaxed">
-              Somos uma empresa que abraça de forma individual os problemas de cada empresário e empresária, tratando nossos clientes como familiares. Nossa expertise tributária é reconhecida, e nossa atuação em investigações criminais, processos penais tributários, estruturação empresarial e planejamento sucessório complementa nosso portfólio de serviços.
-            </p>
-            <p className="text-lg text-foreground leading-relaxed">
-              Com sede em Campina Grande, Paraíba, atendemos clientes em todo o Brasil, oferecendo consultoria de alto nível e dedicação personalizada a cada caso.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Converse com nossos especialistas
-          </h2>
-          <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl">
-            Agende uma consulta com um de nossos advogados e descubra como podemos ajudar seu negócio
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-3 bg-primary-foreground/10 p-4 rounded-lg">
-              <Phone className="w-6 h-6 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-primary-foreground/80">Telefone</p>
-                <p className="text-lg font-semibold">(83) 986366658</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 bg-primary-foreground/10 p-4 rounded-lg">
-              <Mail className="w-6 h-6 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-primary-foreground/80">Email</p>
-                <p className="text-lg font-semibold">eufrauzinoadvogados@outlook.com</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 bg-primary-foreground/10 p-4 rounded-lg">
-              <MapPin className="w-6 h-6 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-primary-foreground/80">Localização</p>
-                <p className="text-lg font-semibold">Campina Grande, PB</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12">
-        <div className="container">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <section className="section section--burgundy">
+          <div className="container section-heading">
             <div>
-              <h3 className="font-serif text-lg font-bold mb-4">Eufrauzino Advogados</h3>
-              <p className="text-primary-foreground/80">Seu escritório de confiança em Direito Tributário desde 2017.</p>
+              <span className="eyebrow">Atendimento</span>
+              <h2 className="!text-white">Converse com nossos profissionais</h2>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Áreas de Atuação</h4>
-              <ul className="space-y-2 text-primary-foreground/80 text-sm">
-                <li>Direito Tributário</li>
-                <li>Direito Penal</li>
-                <li>Direito Empresarial</li>
-                <li>Direito de Família</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Contato</h4>
-              <ul className="space-y-2 text-primary-foreground/80 text-sm">
-                <li>(83) 986366658</li>
-                <li>eufrauzinoadvogados@outlook.com</li>
-                <li>Campina Grande, PB</li>
-              </ul>
+              <p className="!text-white/75">
+                Apresente sua demanda ao escritório para que ela seja encaminhada à equipe responsável pela área correspondente.
+              </p>
+              <a className="button-gold mt-8" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
+                Fale com o escritório <ArrowRight size={17} />
+              </a>
             </div>
           </div>
-          
-          <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/60 text-sm">
-            <p>&copy; 2024 Eufrauzino Advogados. Todos os direitos reservados.</p>
-          </div>
-        </div>
-      </footer>
+        </section>
+      </main>
+
+      <SiteFooter />
     </div>
   );
 }
