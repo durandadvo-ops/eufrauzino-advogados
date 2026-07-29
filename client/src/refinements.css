@@ -25,29 +25,25 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transform: none;
 }
 
-/* Home — seção Profissionais: redução de aproximadamente 40% apenas para Thiago e Dalton. */
+/* Home — seção Profissionais: todas as fotos ocupam o mesmo quadro. */
 .team-preview__image--thiago {
   object-fit: cover !important;
-  object-position: center 12% !important;
-  transform: scale(0.58);
-  transform-origin: center center;
+  object-position: center 18% !important;
+  transform: none !important;
 }
 
 .team-preview__image--dalton {
   object-fit: cover !important;
-  object-position: center 16% !important;
-  transform: scale(0.6);
-  transform-origin: center center;
+  object-position: center 20% !important;
+  transform: none !important;
 }
 
-.team-preview__member:hover .team-preview__image--thiago {
-  transform: scale(0.58);
-}
-
+.team-preview__member:hover .team-preview__image--thiago,
 .team-preview__member:hover .team-preview__image--dalton {
-  transform: scale(0.6);
+  transform: none !important;
 }
 
 /* Página Equipe — todos os profissionais usam o enquadramento original e uniforme. */
@@ -112,21 +108,13 @@
   }
 
   .team-preview__image--thiago {
-    object-position: center 10% !important;
-    transform: scale(0.62);
+    object-position: center 16% !important;
+    transform: none !important;
   }
 
   .team-preview__image--dalton {
-    object-position: center 14% !important;
-    transform: scale(0.64);
-  }
-
-  .team-preview__member:hover .team-preview__image--thiago {
-    transform: scale(0.62);
-  }
-
-  .team-preview__member:hover .team-preview__image--dalton {
-    transform: scale(0.64);
+    object-position: center 18% !important;
+    transform: none !important;
   }
 
   .team-profile__photo {
