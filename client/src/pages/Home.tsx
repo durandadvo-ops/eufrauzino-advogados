@@ -66,7 +66,7 @@ export default function Home() {
             </div>
 
             <div className="hero-premium__art" aria-hidden="true">
-              <span className="hero-monogram">E</span>
+              <img className="hero-monogram" src="/assets/eufrauzino-monograma.svg" alt="" />
             </div>
           </div>
         </section>
