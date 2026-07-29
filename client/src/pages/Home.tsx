@@ -25,11 +25,11 @@ const practices = [
 ];
 
 const team = [
-  { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp" },
-  { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/assets/thiago.webp" },
-  { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp" },
-  { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/assets/dalton.webp" },
-  { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp" },
+  { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp", imageClass: "" },
+  { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/assets/thiago.webp", imageClass: "team-preview__image--thiago" },
+  { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp", imageClass: "" },
+  { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/assets/dalton.webp", imageClass: "team-preview__image--dalton" },
+  { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp", imageClass: "" },
 ];
 
 export default function Home() {
@@ -113,7 +113,7 @@ export default function Home() {
               {team.map((member) => (
                 <button className="team-preview__member" key={member.name} onClick={() => navigate("/equipe")}>
                   <div className="team-preview__image">
-                    <img src={member.image} alt={member.name} />
+                    <img className={member.imageClass} src={member.image} alt={member.name} />
                   </div>
                   <h3>{member.name}</h3>
                   <p>{member.oab}</p>
