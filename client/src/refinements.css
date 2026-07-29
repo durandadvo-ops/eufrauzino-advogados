@@ -50,7 +50,7 @@
   transform: scale(0.6);
 }
 
-/* Página Nossa Equipe — todos os retratos com exatamente o mesmo quadro e tamanho. */
+/* Página Equipe — todos os profissionais usam o enquadramento original e uniforme. */
 .team-profile__photo {
   width: 100%;
   aspect-ratio: 4 / 5;
@@ -59,7 +59,9 @@
   background: #e8dfd2;
 }
 
-.team-profile__photo img {
+.team-profile__photo img,
+.team-profile__image--thiago,
+.team-profile__image--dalton {
   display: block;
   width: 100% !important;
   height: 100% !important;
@@ -130,6 +132,13 @@
   .team-profile__photo {
     width: min(100%, 520px);
     aspect-ratio: 4 / 5;
+  }
+
+  .team-profile__photo img,
+  .team-profile__image--thiago,
+  .team-profile__image--dalton {
+    object-position: center top !important;
+    transform: none !important;
   }
 
   .location-card,
