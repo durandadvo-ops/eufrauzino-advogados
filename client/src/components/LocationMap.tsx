@@ -12,14 +12,6 @@ export default function LocationMap() {
       </div>
 
       <div className="location-card">
-        <div className="location-card__image-wrap">
-          <img
-            src="/assets/escritorio-oficial-final.webp"
-            alt="Fachada do escritório Eufrauzino Advogados"
-            className="location-card__image"
-          />
-        </div>
-
         <div className="location-card__content">
           <div>
             <span className="location-card__label">
@@ -32,6 +24,14 @@ export default function LocationMap() {
           <a className="button-outline-burgundy" href={mapsUrl} target="_blank" rel="noopener noreferrer">
             Abrir no Google Maps <ArrowUpRight size={17} />
           </a>
+        </div>
+
+        <div className="location-card__photo">
+          <img
+            src="/assets/escritorio-oficial-final.webp"
+            alt="Fachada do escritório Eufrauzino Advogados"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
