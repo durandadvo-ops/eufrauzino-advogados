@@ -14,7 +14,7 @@ export default function LocationMap() {
       <div className="location-card">
         <div className="location-card__image-wrap">
           <img
-            src="/assets/escritorio-localizacao-v4.jpg"
+            src="/assets/escritorio-localizacao-final.svg"
             alt="Fachada do escritório Eufrauzino Advogados"
             className="location-card__image"
           />
