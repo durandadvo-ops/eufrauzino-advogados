@@ -9,8 +9,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
@@ -18,5 +16,13 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
-  server: { port: 3000, strictPort: false, host: true },
+  server: {
+    host: true,
+    port: 3000,
+    strictPort: false,
+  },
+  preview: {
+    host: true,
+    port: 4173,
+  },
 });
