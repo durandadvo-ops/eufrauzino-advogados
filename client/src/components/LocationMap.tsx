@@ -15,21 +15,23 @@ export default function LocationMap() {
         <div className="location-card__content">
           <div>
             <span className="location-card__label">
-              <MapPin size={16} /> Escritório físico
+              <MapPin size={16} aria-hidden="true" /> Escritório físico
             </span>
             <h3>Eufrauzino Advogados</h3>
             <p>Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</p>
           </div>
 
           <a className="button-outline-burgundy" href={mapsUrl} target="_blank" rel="noopener noreferrer">
-            Abrir no Google Maps <ArrowUpRight size={17} />
+            Abrir no Google Maps <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </div>
 
         <div className="location-card__photo">
           <img
-            src="/assets/escritorio-oficial-final.jpg?v=20260803-2"
+            src="/assets/escritorio.webp"
             alt="Fachada do escritório Eufrauzino Advogados"
+            width="800"
+            height="445"
             loading="lazy"
             decoding="async"
           />
