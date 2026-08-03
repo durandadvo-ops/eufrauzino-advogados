@@ -1,6 +1,7 @@
-import { ArrowRight } from "lucide-react";
+import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { ArrowRight } from "lucide-react";
 
 const team = [
   {
@@ -77,6 +78,11 @@ const team = [
 export default function Team() {
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta
+        title="Nossa equipe"
+        description="Conheça os advogados do Eufrauzino Advogados, suas áreas de atuação, formações e registros profissionais."
+        path="/equipe"
+      />
       <SiteHeader />
 
       <main>
@@ -95,7 +101,7 @@ export default function Team() {
             {team.map((member, index) => (
               <article className="team-profile" key={member.name}>
                 <div className="team-profile__photo">
-                  <img src={member.image} alt={member.name} />
+                  <img src={member.image} alt={member.name} width="520" height="650" loading={index === 0 ? "eager" : "lazy"} />
                 </div>
 
                 <div className="team-profile__content">
@@ -134,9 +140,10 @@ export default function Team() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/GPI7UOI8iyc?si=ZpWVh5IucD5fZHAw"
+                src="https://www.youtube-nocookie.com/embed/GPI7UOI8iyc?si=ZpWVh5IucD5fZHAw"
                 title="Vídeo Institucional Eufrauzino Advogados"
-                frameBorder="0"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="h-full w-full"
@@ -156,7 +163,7 @@ export default function Team() {
                 Apresente sua demanda ao escritório para que ela seja encaminhada à equipe responsável pela área correspondente.
               </p>
               <a className="button-gold mt-8" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
-                Fale com o escritório <ArrowRight size={17} />
+                Fale com o escritório <ArrowRight size={17} aria-hidden="true" />
               </a>
             </div>
           </div>
