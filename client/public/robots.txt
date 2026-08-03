@@ -1,14 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /private
 
 Sitemap: https://eufrauzinoadvogados.com/sitemap.xml
-
-# Google
-User-agent: Googlebot
-Allow: /
-
-# Bing
-User-agent: Bingbot
-Allow: /

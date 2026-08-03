@@ -1,6 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
+import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { ArrowUpRight } from "lucide-react";
 
 const articles = [
   {
@@ -24,6 +25,11 @@ const articles = [
 export default function Articles() {
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta
+        title="Publicações"
+        description="Artigos jurídicos de autoria dos profissionais do Eufrauzino Advogados publicados em veículos especializados."
+        path="/artigos"
+      />
       <SiteHeader />
       <main>
         <section className="team-page-hero">
@@ -42,12 +48,14 @@ export default function Articles() {
                 <div>
                   <span className="team-profile__oab">{article.category}</span>
                   <h3 className="mt-3">{article.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{article.author} · {new Date(`${article.date}T12:00:00`).toLocaleDateString("pt-BR")}</p>
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {article.author} · <time dateTime={article.date}>{new Date(`${article.date}T12:00:00`).toLocaleDateString("pt-BR")}</time>
+                  </p>
                 </div>
                 <div>
                   <p>{article.excerpt}</p>
                   <a className="button-outline-burgundy mt-7" href={article.link} target="_blank" rel="noopener noreferrer">
-                    Ler no Migalhas <ArrowUpRight size={17} />
+                    Ler no Migalhas <ArrowUpRight size={17} aria-hidden="true" />
                   </a>
                 </div>
               </article>
@@ -64,7 +72,7 @@ export default function Articles() {
             <div>
               <p className="!text-white/75">Acesse o perfil autoral para consultar as publicações e eventuais novos artigos diretamente na plataforma.</p>
               <a className="button-gold mt-8" href="https://www.migalhas.com.br/autor/thiago-durand" target="_blank" rel="noopener noreferrer">
-                Acessar perfil <ArrowUpRight size={17} />
+                Acessar perfil <ArrowUpRight size={17} aria-hidden="true" />
               </a>
             </div>
           </div>

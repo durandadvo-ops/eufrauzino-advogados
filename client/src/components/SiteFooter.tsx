@@ -5,7 +5,7 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="container site-footer__grid">
         <div className="site-footer__brand">
-          <span className="site-footer__monogram" aria-hidden="true">E</span>
+          <img className="site-footer__monogram" src="/assets/eufrauzino-monograma.svg" alt="" aria-hidden="true" />
           <div>
             <p className="site-footer__name">Eufrauzino Advogados</p>
             <p className="site-footer__text">Advocacia tributária com atuação técnica, estratégica e integrada.</p>
@@ -16,9 +16,11 @@ export default function SiteFooter() {
           <p className="site-footer__eyebrow">Navegação</p>
           <div className="site-footer__links">
             <a href="/">Início</a>
+            <a href="/sobre">O escritório</a>
             <a href="/#areas">Áreas de atuação</a>
             <a href="/equipe">Equipe</a>
             <a href="/artigos">Publicações</a>
+            <a href="/eventos">Eventos</a>
           </div>
         </div>
 
@@ -27,7 +29,7 @@ export default function SiteFooter() {
           <div className="site-footer__contact">
             <a href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer"><Phone size={16} /> +55 83 98636-6658</a>
             <a href="mailto:eufrauzinoadvogados@outlook.com"><Mail size={16} /> eufrauzinoadvogados@outlook.com</a>
-            <span><MapPin size={16} /> Campina Grande, Paraíba</span>
+            <span><MapPin size={16} /> Rua Getúlio Cavalcante, 136, Campina Grande/PB</span>
             <a href="https://www.instagram.com/eufrauzinoadvogados/" target="_blank" rel="noopener noreferrer"><Instagram size={16} /> @eufrauzinoadvogados</a>
           </div>
         </div>
