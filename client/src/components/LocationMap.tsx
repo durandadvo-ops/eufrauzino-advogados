@@ -28,10 +28,10 @@ export default function LocationMap() {
 
         <div className="location-card__photo">
           <img
-            src="/assets/escritorio.webp"
+            src="/assets/escritorio.jpg?v=20260803-3"
             alt="Fachada do escritório Eufrauzino Advogados"
-            width="800"
-            height="445"
+            width="480"
+            height="270"
             loading="lazy"
             decoding="async"
           />
