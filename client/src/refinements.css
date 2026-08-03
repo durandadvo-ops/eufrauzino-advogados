@@ -15,8 +15,17 @@
 }
 
 /* Todas as fotos da seção Nossa equipe usam exatamente o mesmo quadro e recorte. */
+.team-preview__member {
+  display: block;
+  min-width: 0;
+  overflow: visible;
+}
+
 .team-preview__image {
   position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background: #e8dfd2;
@@ -40,6 +49,26 @@
 
 .team-preview__member:hover .team-preview__image img {
   transform: none !important;
+}
+
+.team-preview__member h3 {
+  display: block !important;
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  margin: 1rem 0 0.2rem !important;
+  color: var(--burgundy) !important;
+}
+
+.team-preview__member p {
+  display: block !important;
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  margin: 0 !important;
+  color: var(--muted-foreground) !important;
 }
 
 /* Página Equipe preservada no enquadramento integral original. */
@@ -161,10 +190,48 @@
     max-height: 285px;
   }
 
-  .team-preview__image,
-  .team-preview__image img {
+  .team-preview {
+    align-items: start;
+  }
+
+  .team-preview__member {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    align-content: start;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .team-preview__image {
     width: 100%;
-    height: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 4 / 5;
+  }
+
+  .team-preview__image img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .team-preview__member h3 {
+    display: block !important;
+    margin: 0.85rem 0 0.18rem !important;
+    font-size: 1.28rem !important;
+    line-height: 1.08 !important;
+    white-space: normal !important;
+  }
+
+  .team-preview__member p {
+    display: block !important;
+    margin: 0 !important;
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+
+  .team-preview__member:last-child {
+    align-self: start;
   }
 
   .team-profile__photo {
