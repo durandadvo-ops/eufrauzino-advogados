@@ -1,34 +1,69 @@
 import { Menu, Phone, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 
 const whatsappUrl = "https://wa.me/5583986366658";
+
+const links = [
+  { label: "Início", href: "/" },
+  { label: "O escritório", href: "/sobre" },
+  { label: "Atuação", href: "/#areas" },
+  { label: "Profissionais", href: "/equipe" },
+  { label: "Publicações", href: "/artigos" },
+  { label: "Eventos", href: "/eventos" },
+  { label: "Contato", href: "/#contato" },
+];
 
 export default function SiteHeader() {
   const [pathname, navigate] = useLocation();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   const goTo = (target: string) => {
     setOpen(false);
-    if (target.startsWith("/#") && pathname === "/") {
-      document.getElementById(target.slice(2))?.scrollIntoView({ behavior: "smooth" });
+    const [path, hash] = target.split("#");
+    const destination = path || "/";
+
+    if (!hash) {
+      navigate(destination);
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    window.location.href = target;
-  };
 
-  const links = [
-    { label: "O escritório", href: "/sobre" },
-    { label: "Atuação", href: "/#areas" },
-    { label: "Profissionais", href: "/equipe" },
-    { label: "Publicações", href: "/artigos" },
-    { label: "Contato", href: "/#contato" },
-  ];
+    const scrollToSection = () => {
+      const section = document.getElementById(hash);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.replaceState(null, "", `${destination}#${hash}`);
+      }
+    };
+
+    if (pathname !== destination) {
+      navigate(destination);
+      window.setTimeout(scrollToSection, 80);
+    } else {
+      scrollToSection();
+    }
+  };
 
   return (
     <header className="site-header">
       <div className="container site-header__inner">
-        <button className="brand-lockup" onClick={() => navigate("/")} aria-label="Ir para a página inicial">
+        <button className="brand-lockup" type="button" onClick={() => goTo("/")} aria-label="Ir para a página inicial">
           <span className="brand-lockup__name">Eufrauzino</span>
           <span className="brand-lockup__rule" />
           <span className="brand-lockup__descriptor">Advogados</span>
@@ -36,7 +71,13 @@ export default function SiteHeader() {
 
         <nav className="site-nav" aria-label="Navegação principal">
           {links.map((link) => (
-            <button key={link.label} onClick={() => goTo(link.href)} className="site-nav__link">
+            <button
+              key={link.label}
+              type="button"
+              onClick={() => goTo(link.href)}
+              className="site-nav__link"
+              aria-current={!link.href.includes("#") && pathname === link.href ? "page" : undefined}
+            >
               {link.label}
             </button>
           ))}
@@ -45,16 +86,23 @@ export default function SiteHeader() {
           </a>
         </nav>
 
-        <button className="mobile-menu-button" onClick={() => setOpen((value) => !value)} aria-label="Abrir menu" aria-expanded={open}>
-          {open ? <X size={24} /> : <Menu size={24} />}
+        <button
+          className="mobile-menu-button"
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+        >
+          {open ? <X size={27} /> : <Menu size={27} />}
         </button>
       </div>
 
       {open && (
-        <div className="mobile-nav">
+        <div className="mobile-nav" id="mobile-navigation">
           <div className="container mobile-nav__inner">
             {links.map((link) => (
-              <button key={link.label} onClick={() => goTo(link.href)} className="mobile-nav__link">
+              <button key={link.label} type="button" onClick={() => goTo(link.href)} className="mobile-nav__link">
                 {link.label}
               </button>
             ))}
