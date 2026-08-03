@@ -25,26 +25,32 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transform: none;
 }
 
+/* Redução aplicada somente à seção Profissionais da home. */
 .team-preview__image--thiago {
   object-fit: cover !important;
-  object-position: center 18% !important;
-  transform: none !important;
+  object-position: center 14% !important;
+  transform: scale(0.6) !important;
+  transform-origin: center center !important;
 }
 
 .team-preview__image--dalton {
   object-fit: cover !important;
-  object-position: center 20% !important;
-  transform: none !important;
+  object-position: center 18% !important;
+  transform: scale(0.62) !important;
+  transform-origin: center center !important;
 }
 
-.team-preview__member:hover .team-preview__image--thiago,
+.team-preview__member:hover .team-preview__image--thiago {
+  transform: scale(0.6) !important;
+}
+
 .team-preview__member:hover .team-preview__image--dalton {
-  transform: none !important;
+  transform: scale(0.62) !important;
 }
 
+/* Página Equipe preservada no enquadramento original. */
 .team-profile__photo {
   width: 100%;
   aspect-ratio: 4 / 5;
@@ -139,22 +145,18 @@
 
 .location-card__photo {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 2.5rem;
+  padding: 0;
   border-top: 1px solid rgba(124, 85, 55, 0.22);
-  background: #180d0d;
+  background: #e8dfd2;
 }
 
-.location-card__photo img,
-.location-card img {
+.location-card__photo img {
   display: block;
-  width: auto !important;
-  max-width: min(100%, 540px);
+  width: 100% !important;
+  max-width: none !important;
   height: auto !important;
-  max-height: none !important;
   min-height: 0 !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
 }
 
@@ -172,13 +174,21 @@
   }
 
   .team-preview__image--thiago {
-    object-position: center 16% !important;
-    transform: none !important;
+    object-position: center 12% !important;
+    transform: scale(0.64) !important;
   }
 
   .team-preview__image--dalton {
-    object-position: center 18% !important;
-    transform: none !important;
+    object-position: center 16% !important;
+    transform: scale(0.66) !important;
+  }
+
+  .team-preview__member:hover .team-preview__image--thiago {
+    transform: scale(0.64) !important;
+  }
+
+  .team-preview__member:hover .team-preview__image--dalton {
+    transform: scale(0.66) !important;
   }
 
   .team-profile__photo {
@@ -203,14 +213,5 @@
   .location-card__content .button-outline-burgundy {
     width: 100%;
     justify-content: center;
-  }
-
-  .location-card__photo {
-    padding: 1rem;
-  }
-
-  .location-card__photo img,
-  .location-card img {
-    max-width: 100%;
   }
 }
