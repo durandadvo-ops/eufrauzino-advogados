@@ -17,7 +17,7 @@ const practices = [
   },
   {
     title: "Direito Empresarial",
-    description: "Consultoria completa em estrutura jurídica empresarial, desde a elaboração de contratos sociais até processos complexos de dissolução, recuperação judicial, falência e recuperação extrajudicial. Planejamos e estrutururamos sua empresa para crescimento sustentável e segurança jurídica.",
+    description: "Consultoria completa em estrutura jurídica empresarial, desde a elaboração de contratos sociais até processos complexos de dissolução, recuperação judicial, falência e recuperação extrajudicial. Planejamos e estruturamos sua empresa para crescimento sustentável e segurança jurídica.",
   },
   {
     title: "Direito de Família e Sucessório",
