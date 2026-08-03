@@ -1,9 +1,10 @@
+import LocationMap from "@/components/LocationMap";
+import PageMeta from "@/components/PageMeta";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader";
 import { ArrowRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
-import LocationMap from "@/components/LocationMap";
-import SiteFooter from "@/components/SiteFooter";
-import SiteHeader from "@/components/SiteHeader";
 
 const practices = [
   {
@@ -16,7 +17,7 @@ const practices = [
   },
   {
     title: "Direito Empresarial",
-    description: "Consultoria completa em estrutura jurídica empresarial, desde a elaboração de contratos sociais até processos complexos de dissolução, recuperação judicial, falência e recuperação extrajudicial. Planejamos e estruturamos sua empresa para crescimento sustentável e segurança jurídica.",
+    description: "Consultoria completa em estrutura jurídica empresarial, desde a elaboração de contratos sociais até processos complexos de dissolução, recuperação judicial, falência e recuperação extrajudicial. Planejamos e estrutururamos sua empresa para crescimento sustentável e segurança jurídica.",
   },
   {
     title: "Direito de Família e Sucessório",
@@ -44,6 +45,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <PageMeta
+        title="Eufrauzino Advogados - Advocacia Tributária"
+        description="Advocacia tributária com atuação técnica e estratégica em Campina Grande, com atuação complementar em Direito Penal, Empresarial e Sucessório."
+      />
       <SiteHeader />
 
       <main>
@@ -57,10 +62,10 @@ export default function Home() {
               </p>
               <div className="hero-premium__actions">
                 <a className="button-gold" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
-                  Fale com o escritório <ArrowRight size={17} />
+                  Fale com o escritório <ArrowRight size={17} aria-hidden="true" />
                 </a>
                 <a className="button-outline-light" href="#areas">
-                  Conheça nossa atuação <ArrowRight size={17} />
+                  Conheça nossa atuação <ArrowRight size={17} aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -111,9 +116,15 @@ export default function Home() {
 
             <div className="team-preview">
               {team.map((member) => (
-                <button className="team-preview__member" key={member.name} onClick={() => navigate("/equipe")}>
+                <button
+                  className="team-preview__member"
+                  key={member.name}
+                  type="button"
+                  onClick={() => navigate("/equipe")}
+                  aria-label={`Ver perfil de ${member.name}`}
+                >
                   <div className="team-preview__image">
-                    <img src={member.image} alt={member.name} />
+                    <img src={member.image} alt={member.name} width="320" height="400" loading="lazy" />
                   </div>
                   <h3>{member.name}</h3>
                   <p>{member.oab}</p>
@@ -122,8 +133,8 @@ export default function Home() {
             </div>
 
             <div className="section-action">
-              <button className="button-outline-burgundy" onClick={() => navigate("/equipe")}>
-                Ver Perfis Completos <ArrowRight size={17} />
+              <button className="button-outline-burgundy" type="button" onClick={() => navigate("/equipe")}>
+                Ver Perfis Completos <ArrowRight size={17} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -141,13 +152,13 @@ export default function Home() {
 
               <div className="contact-lines">
                 <a className="contact-line" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
-                  <Phone size={18} /> <span>+55 83 98636-6658</span>
+                  <Phone size={18} aria-hidden="true" /> <span>+55 83 98636-6658</span>
                 </a>
                 <a className="contact-line" href="mailto:eufrauzinoadvogados@outlook.com">
-                  <Mail size={18} /> <span>eufrauzinoadvogados@outlook.com</span>
+                  <Mail size={18} aria-hidden="true" /> <span>eufrauzinoadvogados@outlook.com</span>
                 </a>
                 <span className="contact-line">
-                  <MapPin size={18} /> <span>Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</span>
+                  <MapPin size={18} aria-hidden="true" /> <span>Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</span>
                 </span>
               </div>
             </div>
@@ -155,18 +166,18 @@ export default function Home() {
             <form className="contact-form" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name">Nome</label>
-                <input id="name" type="text" required value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
+                <input id="name" name="name" type="text" autoComplete="name" required value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
               </div>
               <div>
                 <label htmlFor="email">E-mail</label>
-                <input id="email" type="email" required value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
+                <input id="email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
               </div>
               <div>
                 <label htmlFor="message">Mensagem</label>
-                <textarea id="message" rows={6} required value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} />
+                <textarea id="message" name="message" rows={6} required value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} />
               </div>
               <button className="button-burgundy" type="submit">
-                Enviar mensagem <ArrowRight size={17} />
+                Enviar mensagem <ArrowRight size={17} aria-hidden="true" />
               </button>
             </form>
           </div>
@@ -186,7 +197,7 @@ export default function Home() {
               <p>Artigos, eventos e informações jurídicas no perfil oficial da Eufrauzino Advogados.</p>
             </div>
             <a className="button-outline-burgundy" href="https://www.instagram.com/eufrauzinoadvogados/" target="_blank" rel="noopener noreferrer">
-              <Instagram size={18} /> @eufrauzinoadvogados
+              <Instagram size={18} aria-hidden="true" /> @eufrauzinoadvogados
             </a>
           </div>
         </section>
