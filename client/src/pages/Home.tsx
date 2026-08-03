@@ -1,5 +1,5 @@
 import { ArrowRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { useLocation } from "wouter";
 import LocationMap from "@/components/LocationMap";
 import SiteFooter from "@/components/SiteFooter";
@@ -25,11 +25,23 @@ const practices = [
 ];
 
 const team = [
-  { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp", imageClass: "" },
-  { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/assets/thiago.webp", imageClass: "team-preview__image--thiago" },
-  { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp", imageClass: "" },
-  { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/assets/dalton.webp", imageClass: "team-preview__image--dalton" },
-  { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp", imageClass: "" },
+  { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp" },
+  {
+    name: "Thiago Durand",
+    oab: "OAB/PB 21.175",
+    image: "/assets/thiago.webp",
+    adjusted: true,
+    backgroundPosition: "left 18%",
+  },
+  { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp" },
+  {
+    name: "Dalton Eufrauzino",
+    oab: "OAB/PB 23.332",
+    image: "/assets/dalton.webp",
+    adjusted: true,
+    backgroundPosition: "right 16%",
+  },
+  { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp" },
 ];
 
 export default function Home() {
@@ -112,8 +124,18 @@ export default function Home() {
             <div className="team-preview">
               {team.map((member) => (
                 <button className="team-preview__member" key={member.name} onClick={() => navigate("/equipe")}>
-                  <div className="team-preview__image">
-                    <img className={member.imageClass} src={member.image} alt={member.name} />
+                  <div
+                    className={`team-preview__image${member.adjusted ? " team-preview__image--adjusted" : ""}`}
+                    style={
+                      member.adjusted
+                        ? ({
+                            "--team-photo": `url(${member.image})`,
+                            "--team-background-position": member.backgroundPosition,
+                          } as CSSProperties)
+                        : undefined
+                    }
+                  >
+                    <img src={member.image} alt={member.name} />
                   </div>
                   <h3>{member.name}</h3>
                   <p>{member.oab}</p>
