@@ -26,29 +26,14 @@ export default function LocationMap() {
           </a>
         </div>
 
-        <div
-          className="location-card__photo"
-          style={{
-            width: "100%",
-            aspectRatio: "16 / 9",
-            overflow: "hidden",
-            background: "#e8dfd2",
-          }}
-        >
+        <div className="location-card__photo">
           <img
-            src="/assets/fachada-escritorio.svg?v=20260806"
+            src="/assets/fachada-escritorio.jpg?v=8027b740"
             alt="Fachada do escritório Eufrauzino Advogados"
-            width="640"
-            height="360"
+            width="1600"
+            height="900"
             loading="lazy"
             decoding="async"
-            style={{
-              display: "block",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
           />
         </div>
       </div>
