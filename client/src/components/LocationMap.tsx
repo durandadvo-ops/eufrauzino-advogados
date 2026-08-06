@@ -28,10 +28,10 @@ export default function LocationMap() {
 
         <div className="location-card__photo">
           <img
-            src="/assets/fachada-escritorio.jpg?v=8027b740"
+            src="/assets/fachada-escritorio.png?v=e84657a5"
             alt="Fachada do escritório Eufrauzino Advogados"
-            width="1600"
-            height="900"
+            width="1672"
+            height="941"
             loading="lazy"
             decoding="async"
           />

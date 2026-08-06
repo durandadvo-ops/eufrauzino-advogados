@@ -705,9 +705,6 @@
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 800 / 445;
-    object-fit: cover;
-    object-position: center;
   }
 
   .instagram-editorial {
