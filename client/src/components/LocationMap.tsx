@@ -1,6 +1,5 @@
 import { ArrowUpRight, MapPin } from "lucide-react";
-
-const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Rua+Get%C3%BAlio+Cavalcante%2C+136%2C+Liberdade%2C+Campina+Grande%2C+PB";
+import { contact } from "@/data/site";
 
 export default function LocationMap() {
   return (
@@ -18,17 +17,19 @@ export default function LocationMap() {
               <MapPin size={16} aria-hidden="true" /> Escritório físico
             </span>
             <h3>Eufrauzino Advogados</h3>
-            <p>Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</p>
+            <p>{contact.address}</p>
           </div>
 
-          <a className="button-outline-burgundy" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+          <a className="button-outline-burgundy" href={contact.maps} target="_blank" rel="noopener noreferrer">
             Abrir no Google Maps <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </div>
 
         <div className="location-card__photo">
           <img
-            src="/assets/fachada-escritorio.png?v=e84657a5"
+            src="/assets/fachada-escritorio.webp"
+            srcSet="/assets/fachada-escritorio-480.webp 480w, /assets/fachada-escritorio-960.webp 960w, /assets/fachada-escritorio.webp 1672w"
+            sizes="(min-width: 1280px) 1184px, (min-width: 1024px) calc(100vw - 96px), (min-width: 640px) calc(100vw - 64px), calc(100vw - 40px)"
             alt="Fachada do escritório Eufrauzino Advogados"
             width="1672"
             height="941"

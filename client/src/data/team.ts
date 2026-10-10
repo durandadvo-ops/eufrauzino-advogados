@@ -1,0 +1,112 @@
+export const team = [
+  {
+    name: "Jurandi Eufrauzino",
+    oab: "OAB/PB 26.034",
+    title: "Advogado | Ex-Auditor Fiscal",
+    id: "jurandi",
+    image: "/assets/jurandi.webp",
+    width: 1066,
+    height: 1600,
+    srcSet:
+      "/assets/jurandi-160.webp 160w, /assets/jurandi-320.webp 320w, /assets/jurandi-640.webp 640w, /assets/jurandi.webp 1066w",
+    specialties: [
+      "Direito Tributário",
+      "Reauditagem",
+      "Contra Auditoria Fiscal",
+    ],
+    education: [
+      "Formado pela Universidade Federal da Paraíba",
+      "Pós-Graduação em Administração Tributária (ESTÁCIO)",
+      "MBA em Direito Fiscal e Tributário (SEFAZ e ESTÁCIO)",
+      "Ex-Auditor Fiscal do Estado da Paraíba",
+      "Professor de Direito Tributário da UEPB (1994-2002)",
+      "Diretor Jurídico da Associação Comercial de Campina Grande (ACCG)",
+      "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2020-2021)",
+    ],
+  },
+  {
+    name: "Thiago Durand",
+    oab: "OAB/PB 21.175",
+    title: "Advogado",
+    id: "thiago",
+    image: "/assets/thiago.webp",
+    width: 853,
+    height: 1280,
+    srcSet:
+      "/assets/thiago-160.webp 160w, /assets/thiago-320.webp 320w, /assets/thiago-640.webp 640w, /assets/thiago.webp 853w",
+    specialties: ["Direito Penal", "Direito Empresarial", "Direito Tributário"],
+    education: [
+      "Formado pela Universidade Estadual da Paraíba",
+      "Pós-graduado em Direito Penal e Processo Penal (FACISA)",
+      "Pós-graduado em Direito Empresarial (EBRADI)",
+      "LLM em Direito Tributário Empresarial (BSSP)",
+    ],
+  },
+  {
+    name: "Victória Eufrauzino",
+    oab: "OAB/PB 25.066",
+    title: "Advogada",
+    id: "victoria",
+    image: "/assets/victoria.webp",
+    width: 822,
+    height: 568,
+    srcSet:
+      "/assets/victoria-160.webp 160w, /assets/victoria-320.webp 320w, /assets/victoria-640.webp 640w, /assets/victoria.webp 822w",
+    specialties: [
+      "Direito Tributário",
+      "Reauditagem",
+      "Contra Auditoria Fiscal",
+    ],
+    education: [
+      "Formada pela Universidade Estadual da Paraíba",
+      "Pós-Graduada em Direito Tributário (CERS)",
+      "Pós-Graduação em Contabilidade Tributária e Prática Fiscal (FBC)",
+      "LLM em Direito Tributário Empresarial (BSSP)",
+      "Presidente da Comissão de Direito Tributário da OAB Subseção Campina Grande (2025-2026)",
+    ],
+  },
+  {
+    name: "Dalton Eufrauzino",
+    oab: "OAB/PB 23.332",
+    title: "Advogado",
+    id: "dalton",
+    image: "/assets/dalton.webp",
+    width: 1066,
+    height: 781,
+    srcSet:
+      "/assets/dalton-160.webp 160w, /assets/dalton-320.webp 320w, /assets/dalton-640.webp 640w, /assets/dalton.webp 1066w",
+    specialties: [
+      "Direito Tributário",
+      "Direito Previdenciário",
+      "Direito do Trabalho",
+    ],
+    education: [
+      "Formado pela Universidade Estadual da Paraíba",
+      "Pós-Graduado em Direito Tributário (IBET)",
+      "Pós-Graduado em Direito Previdenciário e Direito do Trabalho (FIP)",
+      "Pós-Graduação em Contabilidade Tributária (BBSP)",
+    ],
+  },
+  {
+    name: "Dinara Eufrauzino",
+    oab: "OAB/PB 20.651",
+    title: "Advogada",
+    id: "dinara",
+    image: "/assets/dinara.webp",
+    width: 800,
+    height: 626,
+    srcSet:
+      "/assets/dinara-160.webp 160w, /assets/dinara-320.webp 320w, /assets/dinara-640.webp 640w, /assets/dinara.webp 800w",
+    specialties: [
+      "Direito Tributário",
+      "Planejamento Sucessório",
+      "Direito de Família",
+    ],
+    education: [
+      "Formada em Administração pela Universidade Estadual da Paraíba",
+      "Formada pela FACISA",
+      "Pós-graduação em Direito Tributário (Unipe)",
+      "Pós-graduanda em Planejamento Sucessório Patrimônio Família-Empresa",
+    ],
+  },
+];

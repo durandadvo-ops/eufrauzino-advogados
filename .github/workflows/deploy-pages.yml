@@ -31,16 +31,19 @@ jobs:
         uses: pnpm/action-setup@v6
 
       - name: Instalar dependencias
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Verificar TypeScript
+        run: pnpm check
+
+      - name: Verificar dependencias
+        run: pnpm audit --audit-level=moderate
 
       - name: Gerar site para dominio proprio
         run: VITE_BASE_PATH=/ pnpm build
 
-      - name: Preparar GitHub Pages
-        shell: bash
-        run: |
-          cp dist/public/index.html dist/public/404.html
-          touch dist/public/.nojekyll
+      - name: Verificar paginas e recursos
+        run: pnpm check:site
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5

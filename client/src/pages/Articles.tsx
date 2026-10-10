@@ -25,13 +25,9 @@ const articles = [
 export default function Articles() {
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="Publicações"
-        description="Artigos jurídicos de autoria dos profissionais do Eufrauzino Advogados publicados em veículos especializados."
-        path="/artigos"
-      />
+      <PageMeta path="/artigos" />
       <SiteHeader />
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <section className="team-page-hero">
           <div className="container">
             <span className="eyebrow">Publicações</span>

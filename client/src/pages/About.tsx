@@ -1,3 +1,4 @@
+import { contact } from "@/data/site";
 import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -19,13 +20,9 @@ const principles = [
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="O escritório"
-        description="Conheça a história, a estrutura e os princípios institucionais do Eufrauzino Advogados."
-        path="/sobre"
-      />
+      <PageMeta path="/sobre" />
       <SiteHeader />
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <section className="team-page-hero">
           <div className="container">
             <span className="eyebrow">O escritório</span>
@@ -110,7 +107,7 @@ export default function About() {
             </div>
             <div>
               <p className="!text-white/75">Entre em contato para apresentar sua demanda e conhecer a forma de atuação da equipe.</p>
-              <a className="button-gold mt-8" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
+              <a className="button-gold mt-8" href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
                 Fale com o escritório <ArrowRight size={17} aria-hidden="true" />
               </a>
             </div>

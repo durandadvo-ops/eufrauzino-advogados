@@ -1,3 +1,4 @@
+import { contact } from "@/data/site";
 import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -29,13 +30,9 @@ const services = [
 export default function Services() {
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="Áreas de atuação"
-        description="Conheça a atuação do Eufrauzino Advogados em Direito Tributário, Penal, Empresarial e Direito de Família e Sucessório."
-        path="/servicos"
-      />
+      <PageMeta path="/servicos" />
       <SiteHeader />
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <section className="team-page-hero">
           <div className="container">
             <span className="eyebrow">Atuação</span>
@@ -58,7 +55,7 @@ export default function Services() {
                   <ul className="team-profile__education mt-6">
                     {service.details.map((detail) => <li key={detail}>{detail}</li>)}
                   </ul>
-                  <a className="button-outline-burgundy mt-8" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
+                  <a className="button-outline-burgundy mt-8" href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
                     Fale com o escritório <ArrowRight size={17} aria-hidden="true" />
                   </a>
                 </div>

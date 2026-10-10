@@ -2,9 +2,11 @@ import LocationMap from "@/components/LocationMap";
 import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { ArrowRight, Instagram, Mail, MapPin, Phone } from "lucide-react";
-import { useState } from "react";
-import { useLocation } from "wouter";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import InstagramIcon from "@/components/InstagramIcon";
+import { useEffect, useState } from "react";
+import { team } from "@/data/team";
+import { contact } from "@/data/site";
 
 const practices = [
   {
@@ -25,33 +27,30 @@ const practices = [
   },
 ];
 
-const team = [
-  { name: "Jurandi Eufrauzino", oab: "OAB/PB 26.034", image: "/assets/jurandi.webp" },
-  { name: "Thiago Durand", oab: "OAB/PB 21.175", image: "/assets/thiago.webp" },
-  { name: "Victória Eufrauzino", oab: "OAB/PB 25.066", image: "/assets/victoria.webp" },
-  { name: "Dalton Eufrauzino", oab: "OAB/PB 23.332", image: "/assets/dalton.webp" },
-  { name: "Dinara Eufrauzino", oab: "OAB/PB 20.651", image: "/assets/dinara.webp" },
-];
-
 export default function Home() {
-  const [, navigate] = useLocation();
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [ready, setReady] = useState(false);
+  const [formError, setFormError] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  useEffect(() => setReady(true), []);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const message = `Olá, sou ${formData.name}. Meu e-mail é ${formData.email}. ${formData.message}`;
-    window.open(`https://wa.me/5583986366658?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    if (!formData.name.trim() || !formData.message.trim()) {
+      setFormError("Preencha seu nome e sua mensagem antes de continuar.");
+      return;
+    }
+    setFormError("");
+    const message = `Olá, sou ${formData.name.trim()}. Meu e-mail é ${formData.email.trim()}. ${formData.message.trim()}`;
+    window.location.assign(`${contact.whatsapp}?text=${encodeURIComponent(message)}`);
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="Eufrauzino Advogados - Advocacia Tributária"
-        description="Advocacia tributária com atuação técnica e estratégica em Campina Grande, com atuação complementar em Direito Penal, Empresarial e Sucessório."
-      />
+      <PageMeta />
       <SiteHeader />
 
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <section className="hero-premium">
           <div className="container hero-premium__inner">
             <div className="hero-premium__copy">
@@ -61,7 +60,7 @@ export default function Home() {
                 Soluções jurídicas estruturadas para empresas, famílias e contribuintes em temas tributários, empresariais e patrimoniais.
               </p>
               <div className="hero-premium__actions">
-                <a className="button-gold" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
+                <a className="button-gold" href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
                   Fale com o escritório <ArrowRight size={17} aria-hidden="true" />
                 </a>
                 <a className="button-outline-light" href="#areas">
@@ -116,26 +115,25 @@ export default function Home() {
 
             <div className="team-preview">
               {team.map((member) => (
-                <button
+                <a
                   className="team-preview__member"
                   key={member.name}
-                  type="button"
-                  onClick={() => navigate("/equipe")}
+                  href={`/equipe/#${member.id}`}
                   aria-label={`Ver perfil de ${member.name}`}
                 >
                   <div className="team-preview__image">
-                    <img src={member.image} alt={member.name} width="320" height="400" loading="lazy" />
+                    <img src={member.image} srcSet={member.srcSet} sizes="(max-width: 420px) calc(50vw - 24px), (max-width: 720px) calc(50vw - 28px), (max-width: 1100px) calc((100vw - 96px) / 3), 224px" alt={member.name} width={member.width} height={member.height} loading="lazy" decoding="async" />
                   </div>
                   <h3>{member.name}</h3>
                   <p>{member.oab}</p>
-                </button>
+                </a>
               ))}
             </div>
 
             <div className="section-action">
-              <button className="button-outline-burgundy" type="button" onClick={() => navigate("/equipe")}>
+              <a className="button-outline-burgundy" href="/equipe/">
                 Ver Perfis Completos <ArrowRight size={17} aria-hidden="true" />
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -147,38 +145,41 @@ export default function Home() {
               <h2>Converse com o escritório</h2>
               <div className="section-rule" />
               <p>
-                Apresente brevemente sua demanda. A mensagem será encaminhada diretamente para o WhatsApp institucional do escritório.
+                Apresente brevemente sua demanda. Ao continuar, o WhatsApp será aberto com a mensagem preenchida para você revisar e enviar ao escritório.
               </p>
 
               <div className="contact-lines">
-                <a className="contact-line" href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer">
-                  <Phone size={18} aria-hidden="true" /> <span>+55 83 98636-6658</span>
+                <a className="contact-line" href={contact.whatsapp} target="_blank" rel="noopener noreferrer">
+                  <Phone size={18} aria-hidden="true" /> <span>{contact.phone}</span>
                 </a>
-                <a className="contact-line" href="mailto:eufrauzinoadvogados@outlook.com">
-                  <Mail size={18} aria-hidden="true" /> <span>eufrauzinoadvogados@outlook.com</span>
+                <a className="contact-line" href={`mailto:${contact.email}`}>
+                  <Mail size={18} aria-hidden="true" /> <span>{contact.email}</span>
                 </a>
                 <span className="contact-line">
-                  <MapPin size={18} aria-hidden="true" /> <span>Rua Getúlio Cavalcante, 136, Liberdade, Campina Grande/PB</span>
+                  <MapPin size={18} aria-hidden="true" /> <span>{contact.address}</span>
                 </span>
               </div>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" onSubmit={handleSubmit} aria-describedby="contact-form-note">
               <div>
                 <label htmlFor="name">Nome</label>
-                <input id="name" name="name" type="text" autoComplete="name" required value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
+                <input id="name" name="name" type="text" autoComplete="name" maxLength={120} required value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} />
               </div>
               <div>
                 <label htmlFor="email">E-mail</label>
-                <input id="email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
+                <input id="email" name="email" type="email" autoComplete="email" maxLength={254} required value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
               </div>
               <div>
                 <label htmlFor="message">Mensagem</label>
-                <textarea id="message" name="message" rows={6} required value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} />
+                <textarea id="message" name="message" rows={6} maxLength={2000} required value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} />
               </div>
-              <button className="button-burgundy" type="submit">
-                Enviar mensagem <ArrowRight size={17} aria-hidden="true" />
+              <p className="contact-form__note" id="contact-form-note">Revise a mensagem e toque em enviar no WhatsApp para concluir o contato.</p>
+              {formError && <p className="contact-form__note" role="alert">{formError}</p>}
+              <button className="button-burgundy" type="submit" disabled={!ready}>
+                Continuar no WhatsApp <ArrowRight size={17} aria-hidden="true" />
               </button>
+              <noscript><p><a className="button-outline-burgundy" href={contact.whatsapp}>Fale diretamente pelo WhatsApp</a></p></noscript>
             </form>
           </div>
         </section>
@@ -196,8 +197,8 @@ export default function Home() {
               <h2>Acompanhe o escritório</h2>
               <p>Artigos, eventos e informações jurídicas no perfil oficial da Eufrauzino Advogados.</p>
             </div>
-            <a className="button-outline-burgundy" href="https://www.instagram.com/eufrauzinoadvogados/" target="_blank" rel="noopener noreferrer">
-              <Instagram size={18} aria-hidden="true" /> @eufrauzinoadvogados
+            <a className="button-outline-burgundy" href={contact.instagram} target="_blank" rel="noopener noreferrer">
+              <InstagramIcon size={18} /> @eufrauzinoadvogados
             </a>
           </div>
         </section>

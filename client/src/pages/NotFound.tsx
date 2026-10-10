@@ -2,21 +2,13 @@ import PageMeta from "@/components/PageMeta";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { ArrowLeft } from "lucide-react";
-import { useLocation } from "wouter";
 
 export default function NotFound() {
-  const [, navigate] = useLocation();
-
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="Página não encontrada"
-        description="A página solicitada não foi encontrada no site do Eufrauzino Advogados."
-        path="/404"
-        noIndex
-      />
+      <PageMeta path="/404" />
       <SiteHeader />
-      <main className="status-page">
+      <main id="conteudo" tabIndex={-1} className="status-page">
         <div className="status-page__panel">
           <span className="status-page__code">404</span>
           <span className="eyebrow">Página não encontrada</span>
@@ -24,9 +16,9 @@ export default function NotFound() {
           <p>
             A página pode ter sido removida ou o endereço pode ter sido digitado incorretamente.
           </p>
-          <button className="button-burgundy" type="button" onClick={() => navigate("/")}>
+          <a className="button-burgundy" href="/">
             Voltar ao início <ArrowLeft size={17} />
-          </button>
+          </a>
         </div>
       </main>
       <SiteFooter />

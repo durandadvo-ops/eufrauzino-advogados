@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (!this.state.hasError) return this.props.children;
 
     return (
-      <main className="status-page">
+      <main id="conteudo" tabIndex={-1} className="status-page">
         <div className="status-page__panel">
           <AlertTriangle size={42} aria-hidden="true" />
           <span className="eyebrow">Falha temporária</span>

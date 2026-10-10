@@ -17,13 +17,9 @@ const events = [
 export default function Events() {
   return (
     <div className="min-h-screen bg-background">
-      <PageMeta
-        title="Eventos"
-        description="Eventos, palestras e atividades institucionais promovidas ou integradas pelo Eufrauzino Advogados."
-        path="/eventos"
-      />
+      <PageMeta path="/eventos" />
       <SiteHeader />
-      <main>
+      <main id="conteudo" tabIndex={-1}>
         <section className="team-page-hero">
           <div className="container">
             <span className="eyebrow">Agenda institucional</span>

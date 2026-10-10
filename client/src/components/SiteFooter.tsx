@@ -1,4 +1,6 @@
-import { Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { contact } from "@/data/site";
+import { Mail, MapPin, Phone } from "lucide-react";
+import InstagramIcon from "./InstagramIcon";
 
 export default function SiteFooter() {
   return (
@@ -16,21 +18,21 @@ export default function SiteFooter() {
           <p className="site-footer__eyebrow">Navegação</p>
           <div className="site-footer__links">
             <a href="/">Início</a>
-            <a href="/sobre">O escritório</a>
-            <a href="/#areas">Áreas de atuação</a>
-            <a href="/equipe">Equipe</a>
-            <a href="/artigos">Publicações</a>
-            <a href="/eventos">Eventos</a>
+            <a href="/sobre/">O escritório</a>
+            <a href="/servicos/">Áreas de atuação</a>
+            <a href="/equipe/">Equipe</a>
+            <a href="/artigos/">Publicações</a>
+            <a href="/eventos/">Eventos</a>
           </div>
         </div>
 
         <div>
           <p className="site-footer__eyebrow">Contato</p>
           <div className="site-footer__contact">
-            <a href="https://wa.me/5583986366658" target="_blank" rel="noopener noreferrer"><Phone size={16} /> +55 83 98636-6658</a>
-            <a href="mailto:eufrauzinoadvogados@outlook.com"><Mail size={16} /> eufrauzinoadvogados@outlook.com</a>
-            <span><MapPin size={16} /> Rua Getúlio Cavalcante, 136, Campina Grande/PB</span>
-            <a href="https://www.instagram.com/eufrauzinoadvogados/" target="_blank" rel="noopener noreferrer"><Instagram size={16} /> @eufrauzinoadvogados</a>
+            <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer"><Phone size={16} /> {contact.phone}</a>
+            <a href={`mailto:${contact.email}`}><Mail size={16} /> {contact.email}</a>
+            <span><MapPin size={16} /> {contact.address}</span>
+            <a href={contact.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon size={16} /> @eufrauzinoadvogados</a>
           </div>
         </div>
       </div>

@@ -1,14 +1,5 @@
 import { useEffect } from "react";
-
-const SITE_URL = "https://eufrauzinoadvogados.com";
-const DEFAULT_IMAGE = `${SITE_URL}/assets/logo.webp`;
-
-type PageMetaProps = {
-  title: string;
-  description: string;
-  path?: string;
-  noIndex?: boolean;
-};
+import { getPageMetadata } from "@/data/site";
 
 function setMeta(selector: string, attribute: "name" | "property", value: string, content: string) {
   let element = document.head.querySelector<HTMLMetaElement>(`${selector}[${attribute}="${value}"]`);
@@ -22,32 +13,36 @@ function setMeta(selector: string, attribute: "name" | "property", value: string
   element.content = content;
 }
 
-export default function PageMeta({ title, description, path = "/", noIndex = false }: PageMetaProps) {
+export default function PageMeta({ path = "/" }: { path?: string }) {
   useEffect(() => {
-    const normalizedPath = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}`;
-    const canonicalUrl = `${SITE_URL}${normalizedPath}`;
-    const fullTitle = title.includes("Eufrauzino") ? title : `${title} | Eufrauzino Advogados`;
+    const meta = getPageMetadata(path);
 
-    document.title = fullTitle;
+    document.title = meta.title;
     document.documentElement.lang = "pt-BR";
 
-    setMeta("meta", "name", "description", description);
-    setMeta("meta", "name", "robots", noIndex ? "noindex, nofollow" : "index, follow");
-    setMeta("meta", "property", "og:title", fullTitle);
-    setMeta("meta", "property", "og:description", description);
-    setMeta("meta", "property", "og:url", canonicalUrl);
-    setMeta("meta", "property", "og:image", DEFAULT_IMAGE);
-    setMeta("meta", "name", "twitter:title", fullTitle);
-    setMeta("meta", "name", "twitter:description", description);
+    setMeta("meta", "name", "description", meta.description);
+    setMeta("meta", "name", "robots", meta.robots);
+    setMeta("meta", "property", "og:title", meta.title);
+    setMeta("meta", "property", "og:description", meta.description);
+    setMeta("meta", "property", "og:image", meta.image);
+    setMeta("meta", "name", "twitter:title", meta.title);
+    setMeta("meta", "name", "twitter:description", meta.description);
+    setMeta("meta", "name", "twitter:image", meta.image);
 
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
+    if (meta.canonical) {
+      setMeta("meta", "property", "og:url", meta.canonical);
+      if (!canonical) {
+        canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        document.head.appendChild(canonical);
+      }
+      canonical.href = meta.canonical;
+    } else {
+      canonical?.remove();
+      document.head.querySelector('meta[property="og:url"]')?.remove();
     }
-    canonical.href = canonicalUrl;
-  }, [description, noIndex, path, title]);
+  }, [path]);
 
   return null;
 }

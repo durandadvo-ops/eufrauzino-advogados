@@ -25,10 +25,16 @@ jobs:
           package-manager-cache: false
 
       - name: Instalar dependencias
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Verificar TypeScript
         run: pnpm check
 
+      - name: Verificar dependencias
+        run: pnpm audit --audit-level=moderate
+
       - name: Gerar site
         run: VITE_BASE_PATH=/ pnpm build
+
+      - name: Verificar paginas e recursos
+        run: pnpm check:site

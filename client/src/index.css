@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -54,7 +53,7 @@
   --burgundy: #4b0710;
   --burgundy-light: #711a25;
   --gold: #b78a49;
-  --gold-dark: #9e7137;
+  --gold-dark: #8a602b;
   --gold-light: #d8b77e;
   --ivory: #f7f3ec;
   --paper: #fffdf9;
@@ -114,6 +113,22 @@
     text-decoration: none;
   }
 
+  :focus-visible {
+    outline: 3px solid var(--gold-dark);
+    outline-offset: 4px;
+  }
+
+  .site-header :focus-visible,
+  .site-footer :focus-visible,
+  .section--burgundy :focus-visible,
+  .hero-premium :focus-visible {
+    outline-color: var(--gold-light);
+  }
+
+  [id] {
+    scroll-margin-top: 1rem;
+  }
+
   img,
   iframe {
     max-width: 100%;
@@ -149,6 +164,22 @@
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 60;
+    padding: 0.8rem 1rem;
+    color: var(--burgundy);
+    background: var(--paper);
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline-color: var(--gold-dark);
   }
 
   .brand-lockup {
@@ -234,6 +265,7 @@
   }
 
   .mobile-nav {
+    display: none;
     border-top: 1px solid rgba(183, 138, 73, 0.25);
     background: var(--burgundy-deep);
   }
@@ -303,7 +335,7 @@
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
-    color: var(--gold-light);
+    color: var(--gold-dark);
     font-size: 0.73rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -314,6 +346,12 @@
     width: 34px;
     height: 1px;
     background: var(--gold);
+  }
+
+  .hero-premium .eyebrow,
+  .team-page-hero .eyebrow,
+  .section--burgundy .eyebrow {
+    color: var(--gold-light);
   }
 
   .hero-premium h1 {
@@ -487,7 +525,7 @@
   }
 
   .practice-item__number {
-    color: var(--gold);
+    color: var(--gold-dark);
     font-family: "Cormorant Garamond", serif;
     font-size: 1.5rem;
   }
@@ -627,14 +665,24 @@
     border: 0;
     border-bottom: 1px solid #b9a999;
     border-radius: 0;
-    outline: none;
     color: var(--ink);
     background: transparent;
   }
 
   .contact-form input:focus,
   .contact-form textarea:focus {
-    border-color: var(--gold);
+    border-color: var(--gold-dark);
+  }
+
+  .contact-form__note {
+    margin: 0;
+    color: var(--muted-foreground);
+    line-height: 1.6;
+  }
+
+  .contact-form button:disabled {
+    opacity: 0.65;
+    cursor: wait;
   }
 
   .location-block {
@@ -759,6 +807,10 @@
     order: 2;
   }
 
+  .team-profile:nth-child(even) {
+    grid-template-columns: 1.35fr minmax(260px, 0.78fr);
+  }
+
   .team-profile__photo {
     position: relative;
     width: 100%;
@@ -792,7 +844,7 @@
   }
 
   .team-profile__index {
-    color: var(--gold);
+    color: var(--gold-dark);
     font-size: 0.74rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -996,7 +1048,7 @@
     gap: 2rem;
     padding-block: 1.4rem;
     border-top: 1px solid rgba(255, 255, 255, 0.09);
-    color: rgba(255, 250, 242, 0.42);
+    color: rgba(255, 250, 242, 0.65);
     font-size: 0.72rem;
   }
 
@@ -1018,6 +1070,10 @@
     }
 
     .mobile-menu-button {
+      display: block;
+    }
+
+    .mobile-nav {
       display: block;
     }
 
@@ -1049,6 +1105,10 @@
     .team-profile {
       grid-template-columns: 0.8fr 1.2fr;
       gap: 3rem;
+    }
+
+    .team-profile:nth-child(even) {
+      grid-template-columns: 1.2fr 0.8fr;
     }
 
     .site-footer__grid {
