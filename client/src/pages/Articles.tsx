@@ -5,6 +5,14 @@ import { ArrowUpRight } from "lucide-react";
 
 const articles = [
   {
+    title: "A questão do grave dano à coletividade e a interpretação atual do STJ",
+    author: "Thiago Sávio Almeida Durand Gomes",
+    date: "2026-08-10",
+    category: "Direito Penal Tributário",
+    excerpt: "Análise crítica da inclusão de juros e multa na aferição do grave dano à coletividade nos crimes tributários, com exame da jurisprudência do STJ e da distinção entre crédito fiscal exigível e dano penalmente relevante.",
+    link: "https://www.migalhas.com.br/depeso/461838/a-questao-do-grave-dano-a-coletividade-e-a-interpretacao-atual-do-stj",
+  },
+  {
     title: "Extinção da punibilidade nos crimes tributários",
     author: "Thiago Sávio Almeida Durand Gomes",
     date: "2026-05-20",
